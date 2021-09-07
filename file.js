@@ -50,6 +50,10 @@ function buildGrid() {
             for (var o = 0; o < boardSize; o++) {
                 y = y + 1;
                 z = document.createElement("TD");
+                z.setAttribute("id", "myTd" + y);
+                z.addEventListener("click", function () {
+                    myFunction(document.getElementById("myTd" + y));
+                });
                 t = document.createTextNode("cell" + y);
                 z.appendChild(t);
                 document.getElementById("myTr" + o).appendChild(z);
@@ -151,4 +155,8 @@ function generateValues() {
             }
         }
     }
+}
+
+function myFunction(gridId) {
+    console.log(gridId);
 }

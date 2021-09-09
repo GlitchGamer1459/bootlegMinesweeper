@@ -52,7 +52,7 @@ function buildGrid() {
                 z = document.createElement("TD");
                 z.setAttribute("id", "myTd" + y);
                 z.addEventListener("click", function () {
-                    myFunction(document.getElementById("myTd" + y));
+                    console.log(this.id);
                 });
                 t = document.createTextNode("cell" + y);
                 z.appendChild(t);
@@ -61,6 +61,13 @@ function buildGrid() {
         }
     }
     gridBuilt = true;
+}
+
+//begin the game function
+function startGame() {
+    console.log("game started");
+    generateValues();
+    buildGrid();
 }
 
 //generates a 2d array of cell objects
@@ -155,8 +162,4 @@ function generateValues() {
             }
         }
     }
-}
-
-function myFunction(gridId) {
-    console.log(gridId);
 }

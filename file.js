@@ -181,4 +181,6 @@ function generateValues() {
 
 function onClick(cellID) {
     console.log('The cell with ID ' + cellID + ' was clicked')
+    document.getElementById(cellID).innerHTML = '0';
+    document.getElementById(cellID).style.backgroundColor = 'darkgray';
 }

@@ -10,6 +10,8 @@ var h;
 var j;
 var k;
 var l;
+var m;
+var n;
 var gridBuilt = false;
 var w;
 var x;
@@ -63,11 +65,12 @@ function buildGrid() {
             for (var o = 0; o < boardSize; o++) {
                 y = y + 1;
                 z = document.createElement("TD");
-                z.setAttribute("id", "myTd" + y);
+                z.setAttribute("id", y);
                 z.addEventListener("click", function () {
-                    console.log(this.id);
+                    m = this.id;
+                    onClick(m);
                 });
-                t = document.createTextNode("cell" + y);
+                t = document.createTextNode('');
                 z.appendChild(t);
                 document.getElementById("myTr" + o).appendChild(z);
             }
@@ -174,4 +177,8 @@ function generateValues() {
             }
         }
     }
+}
+
+function onClick(cellID) {
+    console.log('The cell with ID ' + cellID + ' was clicked')
 }

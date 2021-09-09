@@ -8,6 +8,8 @@ var f;
 var g;
 var h;
 var j;
+var k;
+var l;
 var gridBuilt = false;
 var w;
 var x;
@@ -26,10 +28,21 @@ var board = [
 
 ];
 
-//prompts the user for needed values
+//prompts the user for needed values and checks values for improper inputs
 function onLoad() {
-    boardSize = prompt("enter board size as whole # between 10 & 20");
-    mineNumber = prompt("enter number of mines as whole # between 10 & 99")
+    k = prompt("enter board size as whole # between 10 & 20");
+    boardSize = Number(k);
+    if (boardSize != boardSize) {
+        console.log("boardSize NaN, set to default 10s 15m");
+        boardSize = 10;
+        mineNumber = 15;
+    }
+    l = prompt("enter number of mines as whole # between 10 & 99")
+    mineNumber = Number(l);
+    if (mineNumber != mineNumber) {
+        console.log("mineNumber NaN, set to default 15m");
+        mineNumber = 15;
+    }
 }
 
 //builds the visible board in index.html
@@ -65,7 +78,6 @@ function buildGrid() {
 
 //begin the game function
 function startGame() {
-    console.log("game started");
     generateValues();
     buildGrid();
 }

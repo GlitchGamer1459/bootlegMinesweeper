@@ -20,10 +20,10 @@ var z;
 var t;
 
 //var for board size
-var boardSize;
+var boardSize = 11;
 
 //var for number of mines
-var mineNumber;
+var mineNumber = 20;
 
 //array for cell objects
 var board = [
@@ -81,87 +81,85 @@ function buildGrid() {
 
 //begin the game function
 function startGame() {
-    generateValues();
     buildGrid();
 }
 
-//generates a 2d array of cell objects
-function generateValues() {
-    //create subarrays
-    for (var i = 0; i < boardSize; i++) {
-        board.push([]);
-    }
+//generates a 2d array of cell objects within <global>
+  //create subarrays
+  for (var i = 0; i < boardSize; i++) {
+      board.push([]);
+}
 
-    //generate cellX objects
-    for (var iteration = 0; iteration < boardSize; iteration++) {
-        for (var o = 0; o < boardSize; o++) {
-            a = a + 1;
-            eval('var cell' + a + ' = {tileValue:0, tileState:0, tileID:' + a + '}');
-            board[iteration][o] = eval('cell' + a);
-        }
-    }
+  //generate cellX objects
+  for (var iteration = 0; iteration < boardSize; iteration++) {
+      for (var o = 0; o < boardSize; o++) {
+          a = a + 1;
+          eval('var cell' + a + ' = {tileValue:0, tileState:0, tileID:' + a + '}');
+          board[iteration][o] = eval('cell' + a);
+      }
+  }
 
-    //place mines with edge occlusion
-    for (var i = 0; i < mineNumber; i++) {
-        h = Math.floor((Math.random() * (boardSize - 2)) + 1);
-        j = Math.floor((Math.random() * (boardSize - 2)) + 1);
-        b = board[h][j];
-        if (eval('cell' + b.tileID + '.tileValue != 9')) {
-            eval('cell' + b.tileID + '.tileValue = 9;');
-        }
-    }
+  //place mines with edge occlusion
+  for (var i = 0; i < mineNumber; i++) {
+      h = Math.floor((Math.random() * (boardSize - 2)) + 1);
+      j = Math.floor((Math.random() * (boardSize - 2)) + 1);
+      b = board[h][j];
+      if (eval('cell' + b.tileID + '.tileValue != 9')) {
+          eval('cell' + b.tileID + '.tileValue = 9;');
+      }
+  }
 
-    //set adjacent tile values
-    for (var i = 0; i < boardSize; i++) {
-        for (var o = 0; o < boardSize; o++) {
-            c = board[i][o];
-            if (c.tileValue === 9) {
-                console.log("found");
-                d = i;
-                e = o;
-                d = d - 1;
-                f = board[d][e];
-                if (eval('cell' + f.tileID + '.tileValue') != 9) {
-                    eval('cell' + f.tileID + '.tileValue += 1');
-                }
-                e = e - 1;
-                f = board[d][e];
-                if (eval('cell' + f.tileID + '.tileValue') != 9) {
-                    eval('cell' + f.tileID + '.tileValue += 1');
-                }
-                d = d + 1;
-                f = board[d][e];
-                if (eval('cell' + f.tileID + '.tileValue') != 9) {
-                    eval('cell' + f.tileID + '.tileValue += 1');
-                }
-                d = d + 1;
-                f = board[d][e];
-                if (eval('cell' + f.tileID + '.tileValue') != 9) {
-                    eval('cell' + f.tileID + '.tileValue += 1');
-                }
-                e = e + 1;
-                f = board[d][e];
-                if (eval('cell' + f.tileID + '.tileValue') != 9) {
-                    eval('cell' + f.tileID + '.tileValue += 1');
-                }
-                e = e + 1;
-                f = board[d][e];
-                if (eval('cell' + f.tileID + '.tileValue') != 9) {
-                    eval('cell' + f.tileID + '.tileValue += 1');
-                }
-                d = d - 1;
-                f = board[d][e];
-                if (eval('cell' + f.tileID + '.tileValue') != 9) {
-                    eval('cell' + f.tileID + '.tileValue += 1');
-                }
-                d = d - 1;
-                f = board[d][e];
-                if (eval('cell' + f.tileID + '.tileValue') != 9) {
-                    eval('cell' + f.tileID + '.tileValue += 1');
-                }
-            }
-        }
-    }
+  //set adjacent tile values
+  for (var i = 0; i < boardSize; i++) {
+      for (var o = 0; o < boardSize; o++) {
+          c = board[i][o];
+          if (c.tileValue === 9) {
+              console.log("found");
+              d = i;
+              e = o;
+              d = d - 1;
+              f = board[d][e];
+              if (eval('cell' + f.tileID + '.tileValue') != 9) {
+                  eval('cell' + f.tileID + '.tileValue += 1');
+              }
+              e = e - 1;
+              f = board[d][e];
+              if (eval('cell' + f.tileID + '.tileValue') != 9) {
+                  eval('cell' + f.tileID + '.tileValue += 1');
+              }
+              d = d + 1;
+              f = board[d][e];
+              if (eval('cell' + f.tileID + '.tileValue') != 9) {
+                  eval('cell' + f.tileID + '.tileValue += 1');
+              }
+              d = d + 1;
+              f = board[d][e];
+              if (eval('cell' + f.tileID + '.tileValue') != 9) {
+                  eval('cell' + f.tileID + '.tileValue += 1');
+              }
+              e = e + 1;
+              f = board[d][e];
+              if (eval('cell' + f.tileID + '.tileValue') != 9) {
+                  eval('cell' + f.tileID + '.tileValue += 1');
+              }
+              e = e + 1;
+              f = board[d][e];
+              if (eval('cell' + f.tileID + '.tileValue') != 9) {
+                  eval('cell' + f.tileID + '.tileValue += 1');
+              }
+              d = d - 1;
+              f = board[d][e];
+              if (eval('cell' + f.tileID + '.tileValue') != 9) {
+                  eval('cell' + f.tileID + '.tileValue += 1');
+              }
+              d = d - 1;
+              f = board[d][e];
+              if (eval('cell' + f.tileID + '.tileValue') != 9) {
+                  eval('cell' + f.tileID + '.tileValue += 1');
+              }
+          }
+      }
+  }
 
     //log board
     for (var column in board) {
@@ -177,12 +175,11 @@ function generateValues() {
             }
         }
     }
-}
 
 function onClick(cellID) {
     console.log('The cell with ID ' + cellID + ' was clicked')
-    //n = eval('cell' + cellID + '.tileID');
-    //console.log(n);
+    n = eval('cell' + cellID + '.tileID');
+    console.log(n);
     document.getElementById(cellID).innerHTML = '0';
     document.getElementById(cellID).style.backgroundColor = 'darkgray';
 }

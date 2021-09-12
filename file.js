@@ -190,25 +190,31 @@ function startGame() {
     function onClick(cellID, event) {
         n = event.which;
         if (didWin == 1) {
-            document.getElementById('winText').innerHTML = 'you lost, stop clicking';
+            document.getElementById('notify').innerHTML = 'you lost, stop clicking';
         }
         //left click
         if (n == 1) {
             if (didWin == 0) {
                 p = eval('cell' + cellID + '.tileValue');
                 document.getElementById(cellID).innerHTML = p;
+                document.getElementById(cellID).style.backgroundColor = 'darkgray';
                 if (p == 9) {
                     didWin = 1;
-                    document.getElementById('winText').innerHTML = 'you lost';
+                    document.getElementById('notify').innerHTML = 'you lost';
                     document.getElementById(cellID).style.backgroundColor = 'black';
                 }
-                document.getElementById(cellID).style.backgroundColor = 'darkgray';
             }
         //right click
         } else if (n == 3) {
             if (didWin == 0) {
-                document.getElementById(cellID).style.backgroundColor = 'red';
-                document.getElementById(cellID).innerHTML = 'f';
+                if (flagCount > 0) {
+                    flagCount = flagCount - 1;
+                    console.log('number of flags: ' + flagCount);
+                    document.getElementById(cellID).style.backgroundColor = 'red';
+                    document.getElementById(cellID).innerHTML = 'f';
+                } else {
+                    document.getElementById('notify').innerHTML = 'you are out of flags'
+                }
             }
         }
     }

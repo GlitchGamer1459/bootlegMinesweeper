@@ -29,6 +29,9 @@ var boardSize = 11;
 //var for number of mines
 var mineNumber = 20;
 
+//var for flags remaining
+var flagCount = 0;
+
 //array for cell objects
 var board = [
 
@@ -81,7 +84,7 @@ function startGame() {
                     z.setAttribute("id", y);
                     z.addEventListener("mousedown", function (event) {
                         m = this.id;
-                        leftRightClick(m, event);
+                        onClick(m, event);
                     });
                     t = document.createTextNode('');
                     z.appendChild(t);
@@ -123,6 +126,8 @@ function startGame() {
             c = board[i][o];
             if (c.tileValue === 9) {
                 console.log("found");
+                //count flags as mines identified
+                flagCount = flagCount + 1;
                 d = i;
                 e = o;
                 d = d - 1;
@@ -184,26 +189,32 @@ function startGame() {
         }
     }
 
-    //runs the following when a tile is clicked
-    function onClick(cellID) {
+    //runs the following when a tile is clicked, left OR right
+    function onClick(cellID, event) {
+        n = event.which;
         if (didWin == 1) {
             console.log('stop clicking, you lost');
         }
-        if (didWin == 0) {
-            console.log('The cell with ID ' + cellID + ' was clicked')
-            n = eval('cell' + cellID + '.tileValue');
-            document.getElementById(cellID).innerHTML = n;
-            if (n == 9) {
-                didWin = 1;
-                console.log('you lost');
+        //left click
+        if (n == 1) {
+            console.log("left");
+            if (didWin == 0) {
+                p = eval('cell' + cellID + '.tileValue');
+                document.getElementById(cellID).innerHTML = p;
+                if (p == 9) {
+                    didWin = 1;
+                    console.log('you lost');
+                }
+                document.getElementById(cellID).style.backgroundColor = 'darkgray';
             }
-            document.getElementById(cellID).style.backgroundColor = 'darkgray';
+        //right click
+        } else if (n == 3) {
+            if (didWin == 0) {
+                console.log("right");
+                document.getElementById(cellID).style.backgroundColor = 'red';
+                document.getElementById(cellID).innerHTML = 'f';
+            }
         }
-    }
-
-    //runs the following when a tile is clicked, left OR right
-    function leftRightClick(cellID, event) {
-        console.log(cellID + " was " + event.which);
     }
 
 //end the startGame() function

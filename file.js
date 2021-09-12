@@ -125,7 +125,6 @@ function startGame() {
         for (var o = 0; o < boardSize; o++) {
             c = board[i][o];
             if (c.tileValue === 9) {
-                console.log("found");
                 //count flags as mines identified
                 flagCount = flagCount + 1;
                 d = i;
@@ -174,11 +173,6 @@ function startGame() {
         }
     }
 
-    //log board
-    for (var column in board) {
-        console.log(board[column]);
-    }
-
     //log mine positions
     for (var i = 0; i < boardSize; i++) {
         for (var o = 0; o < boardSize; o++) {
@@ -189,6 +183,9 @@ function startGame() {
         }
     }
 
+    //log flag count
+    console.log('number of flags: ' + flagCount);
+
     //runs the following when a tile is clicked, left OR right
     function onClick(cellID, event) {
         n = event.which;
@@ -197,7 +194,6 @@ function startGame() {
         }
         //left click
         if (n == 1) {
-            console.log("left");
             if (didWin == 0) {
                 p = eval('cell' + cellID + '.tileValue');
                 document.getElementById(cellID).innerHTML = p;
@@ -210,7 +206,6 @@ function startGame() {
         //right click
         } else if (n == 3) {
             if (didWin == 0) {
-                console.log("right");
                 document.getElementById(cellID).style.backgroundColor = 'red';
                 document.getElementById(cellID).innerHTML = 'f';
             }

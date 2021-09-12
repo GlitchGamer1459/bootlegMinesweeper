@@ -12,12 +12,16 @@ var k;
 var l;
 var m;
 var n;
+var p;
 var gridBuilt = false;
 var w;
 var x;
 var y = 0;
 var z;
 var t;
+
+//set win state --- 0 = game is playing, 1 = lost, 2 = won
+var didWin = 0;
 
 //var for board size
 var boardSize = 11;
@@ -29,6 +33,11 @@ var mineNumber = 20;
 var board = [
 
 ];
+
+//disables the context menu from right clicking
+document.oncontextmenu = function () {
+    return false;
+}
 
 //prompts the user for needed values and checks values for improper inputs
 function onLoad() {
@@ -70,9 +79,9 @@ function startGame() {
                     y = y + 1;
                     z = document.createElement("TD");
                     z.setAttribute("id", y);
-                    z.addEventListener("click", function () {
+                    z.addEventListener("mousedown", function (event) {
                         m = this.id;
-                        onClick(m);
+                        leftRightClick(m, event);
                     });
                     t = document.createTextNode('');
                     z.appendChild(t);
@@ -177,11 +186,24 @@ function startGame() {
 
     //runs the following when a tile is clicked
     function onClick(cellID) {
-        console.log('The cell with ID ' + cellID + ' was clicked')
-        n = eval('cell' + cellID + '.tileID');
-        console.log(n);
-        document.getElementById(cellID).innerHTML = '0';
-        document.getElementById(cellID).style.backgroundColor = 'darkgray';
+        if (didWin == 1) {
+            console.log('stop clicking, you lost');
+        }
+        if (didWin == 0) {
+            console.log('The cell with ID ' + cellID + ' was clicked')
+            n = eval('cell' + cellID + '.tileValue');
+            document.getElementById(cellID).innerHTML = n;
+            if (n == 9) {
+                didWin = 1;
+                console.log('you lost');
+            }
+            document.getElementById(cellID).style.backgroundColor = 'darkgray';
+        }
+    }
+
+    //runs the following when a tile is clicked, left OR right
+    function leftRightClick(cellID, event) {
+        console.log(cellID + " was " + event.which);
     }
 
 //end the startGame() function

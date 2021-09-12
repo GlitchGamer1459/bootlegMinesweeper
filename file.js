@@ -190,7 +190,7 @@ function startGame() {
     function onClick(cellID, event) {
         n = event.which;
         if (didWin == 1) {
-            console.log('stop clicking, you lost');
+            document.getElementById('winText').innerHTML = 'you lost, stop clicking';
         }
         //left click
         if (n == 1) {
@@ -199,7 +199,8 @@ function startGame() {
                 document.getElementById(cellID).innerHTML = p;
                 if (p == 9) {
                     didWin = 1;
-                    console.log('you lost');
+                    document.getElementById('winText').innerHTML = 'you lost';
+                    document.getElementById(cellID).style.backgroundColor = 'black';
                 }
                 document.getElementById(cellID).style.backgroundColor = 'darkgray';
             }

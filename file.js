@@ -13,6 +13,11 @@ var l;
 var m;
 var n;
 var p;
+var q = 0;
+var r;
+var s;
+var u;
+var v;
 var gridBuilt = false;
 var w;
 var x;
@@ -195,6 +200,7 @@ function startGame() {
         //left click
         if (n == 1) {
             if (didWin == 0) {
+                eval('cell' + cellID + '.tileState = 1');
                 p = eval('cell' + cellID + '.tileValue');
                 document.getElementById(cellID).innerHTML = p;
                 document.getElementById(cellID).style.backgroundColor = 'darkgray';
@@ -204,18 +210,46 @@ function startGame() {
                     document.getElementById(cellID).style.backgroundColor = 'black';
                 }
             }
-        //right click
+            //right click
         } else if (n == 3) {
             if (didWin == 0) {
                 if (flagCount > 0) {
                     flagCount = flagCount - 1;
                     console.log('number of flags: ' + flagCount);
+                    eval('cell' + cellID + '.tileState = 2');
                     document.getElementById(cellID).style.backgroundColor = 'red';
                     document.getElementById(cellID).innerHTML = 'f';
                 } else {
                     document.getElementById('notify').innerHTML = 'you are out of flags'
                 }
             }
+        }
+        winScan();
+    }
+
+    //scan for win
+    function winScan() {
+        //scan tile states
+        if (didWin == 0) {
+            s = 0;
+            u = (boardSize * boardSize) + 1;
+            for (var i = 1; i < u; i++) {
+                    r = eval('cell' + i + '.tileState');
+                    if (r != 0) {
+                        s = s + 1;
+                        console.log('completion #: ' + s);
+                    }
+            }
+            //check for win
+            if (s == 100) {
+                didWin = 2;
+            } else {
+                s = 0;
+            }
+        }
+        //declare win
+        if (didWin == 2) {
+            document.getElementById('notify').innerHTML = 'you win!';
         }
     }
 

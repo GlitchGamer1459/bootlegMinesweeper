@@ -24,6 +24,7 @@ var x;
 var y = 0;
 var z;
 var t;
+var buttonKill = document.getElementById('startButton');
 
 //set win state --- 0 = game is playing, 1 = lost, 2 = won
 var didWin = 0;
@@ -66,6 +67,7 @@ function onLoad() {
 
 //begin the game function
 function startGame() {
+    buttonKill.remove('startButton');
     buildGrid();
 
     //builds the visible board in index.html

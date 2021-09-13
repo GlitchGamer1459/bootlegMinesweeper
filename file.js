@@ -237,7 +237,6 @@ function startGame() {
                     r = eval('cell' + i + '.tileState');
                     if (r != 0) {
                         s = s + 1;
-                        console.log('completion #: ' + s);
                     }
             }
             //check for win

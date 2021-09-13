@@ -1,10 +1,18 @@
-#world {
-    padding-bottom: 10px;
-    align-content: center;
+body {
+    text-align: center;
 }
 
 table {
     background-color: whitesmoke;
+}
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr {
+    vertical-align: middle;
 }
 
 td {
@@ -12,6 +20,7 @@ td {
     border: 1px solid darkgray;
     width: 20px;
     height: 20px;
+    vertical-align: middle;
 }
 
 td:hover {

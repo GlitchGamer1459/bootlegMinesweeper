@@ -258,6 +258,6 @@ function startGame() {
 //end the startGame() function
 }
 
-function test() {
+function testPart2() {
     console.log('this was called from another js file');
 }

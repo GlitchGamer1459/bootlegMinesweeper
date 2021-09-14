@@ -200,7 +200,6 @@ function startGame() {
         n = event.which;
         if (didWin == 1) {
             document.getElementById('notify').innerHTML = 'you lost, stop clicking';
-            stopTimer();
         }
         //left click
         if (n == 1) {
@@ -213,6 +212,7 @@ function startGame() {
                     didWin = 1;
                     document.getElementById('notify').innerHTML = 'you lost';
                     document.getElementById(cellID).style.backgroundColor = 'black';
+                    stopTimer();
                 }
             }
             //right click

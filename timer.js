@@ -5,6 +5,10 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 
+var secondString;
+var minuteString
+var hourString;
+
 //when called, starts the timer
 function startTimer() {
     startCounting = true;
@@ -23,9 +27,19 @@ function runTimer() {
             hours = hours + 1;
             minutes = 0;
         }
-        document.getElementById("timerP").innerHTML = 'Timer: ' + hours + ':' + minutes + ':' + seconds;
-    } else {
-        return;
+        secondString = String(seconds);
+        minuteString = String(minutes);
+        hourString = String(hours);
+        if (seconds < 10) {
+            secondString = '0' + String(seconds);
+        }
+        if (minutes < 10) {
+            minuteString = '0' + String(minutes);
+        }
+        if (hours < 10) {
+            hourString = '0' + String(hours);
+        }
+        document.getElementById('timerP').innerHTML = 'Timer: ' + hourString + ':' + minuteString + ':' + secondString
     }
 }
 

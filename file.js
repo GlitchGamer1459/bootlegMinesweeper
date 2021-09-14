@@ -69,6 +69,7 @@ function onLoad() {
 function startGame() {
     buttonKill.remove('startButton');
     buildGrid();
+    startTimer();
 
     //builds the visible board in index.html
     function buildGrid() {
@@ -199,6 +200,7 @@ function startGame() {
         n = event.which;
         if (didWin == 1) {
             document.getElementById('notify').innerHTML = 'you lost, stop clicking';
+            stopTimer();
         }
         //left click
         if (n == 1) {
@@ -252,12 +254,9 @@ function startGame() {
         //declare win
         if (didWin == 2) {
             document.getElementById('notify').innerHTML = 'you win!';
+            stopTimer();
         }
     }
 
 //end the startGame() function
-}
-
-function testPart2() {
-    console.log('this was called from another js file');
 }

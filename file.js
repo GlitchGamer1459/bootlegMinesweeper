@@ -126,6 +126,8 @@ function startGame() {
         b = board[h][j];
         if (eval('cell' + b.tileID + '.tileValue != 9')) {
             eval('cell' + b.tileID + '.tileValue = 9;');
+        } else {
+            i--;
         }
     }
 

@@ -26,3 +26,12 @@ td {
 td:hover {
     background-color: darkgray;
 }
+
+.navBar {
+    background-color: lightgray;
+    border: 1px solid darkgray;
+}
+
+.navBar {
+
+}

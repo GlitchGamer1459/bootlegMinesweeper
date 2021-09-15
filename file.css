@@ -25,6 +25,7 @@ td:hover {
     border: 2px solid darkgray;
     width: 100%;
     overflow: auto;
+    border-radius: 3px;
 }
 
 .navBar a {
@@ -38,7 +39,13 @@ td:hover {
 .navBar a:hover {
     padding: 10px;
     background-color: black;
-    border: 2px solid #555555;
+    border: 2px solid #404040;
+}
+
+a.active {
+    padding: 10px;
+    background-color: #B82700;
+    border: 2px solid #D82D00;
 }
 
 .sweepText {

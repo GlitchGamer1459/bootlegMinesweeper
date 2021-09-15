@@ -1,7 +1,3 @@
-body {
-    text-align: center;
-}
-
 table {
     background-color: whitesmoke;
 }
@@ -11,16 +7,13 @@ table.center {
     margin-right: auto;
 }
 
-tr {
-    vertical-align: middle;
-}
-
 td {
     background-color: lightgray;
     border: 1px solid darkgray;
     width: 20px;
     height: 20px;
     vertical-align: middle;
+    text-align: center;
 }
 
 td:hover {
@@ -28,10 +21,26 @@ td:hover {
 }
 
 .navBar {
-    background-color: lightgray;
-    border: 1px solid darkgray;
+    background-color: #555;
+    border: 2px solid darkgray;
+    width: 100%;
+    overflow: auto;
 }
 
-.navBar {
+.navBar a {
+    float: left;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
 
+.navBar a:hover {
+    padding: 10px;
+    background-color: black;
+    border: 2px solid #555555;
+}
+
+.sweepText {
+    text-align: center;
 }

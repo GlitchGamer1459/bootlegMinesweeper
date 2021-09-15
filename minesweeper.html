@@ -6,7 +6,7 @@
     <title>Minesweeper</title>
     <link rel="stylesheet" href="file.css" />
 </head>
-<body onload="onLoad()">
+<body>
     <div class="navBar">
         <a href="index.html">Home</a>
         <a class="active" href="minesweeper.html">Minesweeper</a>
@@ -15,7 +15,10 @@
     <div class="sweepText">
         <h1>Minesweeper but Bad TM R C</h1>
         <p>Welcome to my first coding project!</p>
-        <p>By REDACTED</p>
+        <label for="boardInput">Board Size:</label>
+        <input id="boardInput"/>
+        <label for="mineInput">Number of Mines:</label>
+        <input id="mineInput"/>
         <p id="timerP">Timer: 00:00:00</p>
         <p id="notify">This text will notify you of any events in game</p>
         <button id="startButton" onclick="startGame()">Start Game</button>

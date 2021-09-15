@@ -48,16 +48,15 @@ document.oncontextmenu = function () {
     return false;
 }
 
-//prompts the user for needed values and checks values for improper inputs
-function onLoad() {
-    k = prompt("enter board size as whole # between 10 & 20");
+//checks values for improper inputs
+function setInputs() {
+    k = document.getElementById('boardInput').value;
     boardSize = Number(k);
     if (boardSize != boardSize) {
         console.log("boardSize NaN, set to default 10s 15m");
         boardSize = 10;
-        mineNumber = 15;
     }
-    l = prompt("enter number of mines as whole # between 10 & 99")
+    l = document.getElementById('mineInput').value;
     mineNumber = Number(l);
     if (mineNumber != mineNumber) {
         console.log("mineNumber NaN, set to default 15m");
@@ -68,6 +67,7 @@ function onLoad() {
 //begin the game function
 function startGame() {
     buttonKill.remove('startButton');
+    setInputs();
     buildGrid();
     startTimer();
 

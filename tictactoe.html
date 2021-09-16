@@ -12,7 +12,31 @@
         <a href="minesweeper.html">Minesweeper</a>
         <a class="active" href="tictactoe.html">Tic-Tac-Toe</a>
     </div>
-    <p>This is the Tic Tac Toe page.</p>
-    <p>This is a work in progress.</p>
+    <div class="TTTtext">
+        <h1>Tic Tac Toe but Average</h1>
+        <label for="firstPlayer">First Player:</label>
+        <input id="firstPlayer" />
+        <p id="notify">This will notify you of events in the game.</p>
+        <button onclick="startGame()">Start Game</button><br><br>
+        <button onclick="reset()">Reset Game</button><br><br>
+    </div>
+    <table class="TTTboard">
+        <tr>
+            <td id="tile1" onclick="onClick(this.id)"></td>
+            <td id="tile2" onclick="onClick(this.id)"></td>
+            <td id="tile3" onclick="onClick(this.id)"></td>
+        </tr>
+        <tr>
+            <td id="tile4" onclick="onClick(this.id)"></td>
+            <td id="tile5" onclick="onClick(this.id)"></td>
+            <td id="tile6" onclick="onClick(this.id)"></td>
+        </tr>
+        <tr>
+            <td id="tile7" onclick="onClick(this.id)"></td>
+            <td id="tile8" onclick="onClick(this.id)"></td>
+            <td id="tile9" onclick="onClick(this.id)"></td>
+        </tr>
+    </table>
+    <script src="tictactoe.js"></script>
 </body>
 </html>

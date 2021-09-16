@@ -6,7 +6,7 @@ var minutes = 0;
 var hours = 0;
 
 var secondString;
-var minuteString
+var minuteString;
 var hourString;
 
 //when called, starts the timer

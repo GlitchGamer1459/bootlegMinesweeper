@@ -1,13 +1,10 @@
-table {
+.MStable {
+    margin-left: auto;
+    margin-right: auto;
     background-color: whitesmoke;
 }
 
-table.center {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-td {
+.MStable td {
     background-color: lightgray;
     border: 1px solid darkgray;
     width: 20px;
@@ -16,7 +13,7 @@ td {
     text-align: center;
 }
 
-td:hover {
+.MStable td:hover {
     background-color: darkgray;
 }
 
@@ -50,4 +47,30 @@ a.active {
 
 .sweepText {
     text-align: center;
+}
+
+.TTTtext {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.TTTboard {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: whitesmoke;
+}
+
+.TTTboard td {
+    background-color: lightgray;
+    border: 1px solid darkgray;
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 30px;
+}
+
+.TTTboard td:hover {
+    background-color: darkgray;
 }

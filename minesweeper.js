@@ -76,7 +76,7 @@ function startGame() {
         if (gridBuilt === false) {
             var w = document.createElement("TABLE");
             w.setAttribute("id", "myTable");
-            w.setAttribute("class", "center");
+            w.setAttribute("class", "MStable");
             document.body.appendChild(w);
 
             for (var i = 0; i < boardSize; i++) {

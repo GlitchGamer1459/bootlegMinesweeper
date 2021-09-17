@@ -7,6 +7,7 @@ var clickCount = 0;
 //when called, opens the board to interaction
 function startGame() {
     start = true;
+    document.getElementById('notify').innerHTML = 'Game started!';
     firstPlayerIs = document.getElementById('firstPlayer').value;
     if (firstPlayerIs == 'X' || firstPlayerIs == 'x') {
         cycle = 0;

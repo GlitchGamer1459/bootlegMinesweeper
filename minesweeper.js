@@ -31,6 +31,7 @@ var didWin = 0;
 
 //var for board size
 var boardSize = 11;
+var boardSizeSq;
 
 //var for number of mines
 var mineNumber = 20;
@@ -62,6 +63,7 @@ function setInputs() {
         console.log("mineNumber NaN, set to default 15m");
         mineNumber = 15;
     }
+    boardSizeSq = boardSize * boardSize;
 }
 
 //begin the game function
@@ -221,11 +223,19 @@ function startGame() {
         } else if (n == 3) {
             if (didWin == 0) {
                 if (flagCount > 0) {
-                    flagCount = flagCount - 1;
-                    console.log('number of flags: ' + flagCount);
-                    eval('cell' + cellID + '.tileState = 2');
-                    document.getElementById(cellID).style.backgroundColor = 'red';
-                    document.getElementById(cellID).innerHTML = 'f';
+                    if (eval('cell' + cellID + '.tileState') == 2) {
+                        eval('cell' + cellID + '.tileState = 0')
+                        flagCount = flagCount + 1;
+                        document.getElementById(cellID).style.backgroundColor = 'lightgray';
+                        document.getElementById(cellID).innerHTML = '';
+                        console.log('number of flags: ' + flagCount);
+                    } else {
+                        flagCount = flagCount - 1;
+                        console.log('number of flags: ' + flagCount);
+                        eval('cell' + cellID + '.tileState = 2');
+                        document.getElementById(cellID).style.backgroundColor = 'red';
+                        document.getElementById(cellID).innerHTML = 'f';
+                    }
                 } else {
                     document.getElementById('notify').innerHTML = 'you are out of flags'
                 }
@@ -247,7 +257,7 @@ function startGame() {
                     }
             }
             //check for win
-            if (s == 100) {
+            if (s == boardSizeSq) {
                 didWin = 2;
             } else {
                 s = 0;

@@ -25,6 +25,8 @@ var y = 0;
 var z;
 var t;
 var buttonKill = document.getElementById('startButton');
+var tableKill;
+var resetButton = document.getElementById('resetButton');
 
 //set win state --- 0 = game is playing, 1 = lost, 2 = won
 var didWin = 0;
@@ -93,6 +95,7 @@ function startGame() {
                     y = y + 1;
                     z = document.createElement("TD");
                     z.setAttribute("id", y);
+                    z.setAttribute("class", "tableCell");
                     z.addEventListener("mousedown", function (event) {
                         m = this.id;
                         onClick(m, event);
@@ -219,12 +222,12 @@ function startGame() {
                     stopTimer();
                 }
             }
-            //right click
+        //right click
         } else if (n == 3) {
             if (didWin == 0) {
                 if (flagCount > 0) {
                     if (eval('cell' + cellID + '.tileState') == 2) {
-                        eval('cell' + cellID + '.tileState = 0')
+                        eval('cell' + cellID + '.tileState = 0');
                         flagCount = flagCount + 1;
                         document.getElementById(cellID).style.backgroundColor = 'lightgray';
                         document.getElementById(cellID).innerHTML = '';
@@ -271,4 +274,21 @@ function startGame() {
     }
 
 //end the startGame() function
+}
+
+//when called, wipes the board from DOM and undefines cellX objects
+function resetGame() {
+    stopTimer(true);
+    tableKill = document.getElementById('myTable');
+    while (tableKill.hasChildNodes()) {
+        tableKill.removeChild(tableKill.firstChild);
+    }
+    tableKill.remove();
+    document.getElementById('notify').innerHTML = 'This text will notify you of any events in game';
+    document.getElementById('buttonParent').insertBefore(buttonKill, resetButton);
+    for (var i = 0; i < boardSize; i++) {
+        for (var o = 0; o < boardSize; o++) {
+
+        }
+    }
 }

@@ -6,7 +6,7 @@
     <title>Minesweeper</title>
     <link rel="stylesheet" href="file.css" />
 </head>
-<body>
+<body id="MSbody">
     <div class="navBar">
         <a href="index.html">Home</a>
         <a class="active" href="minesweeper.html">Minesweeper</a>
@@ -20,7 +20,10 @@
         <input id="mineInput"/>
         <p id="timerP">Timer: 00:00:00</p>
         <p id="notify">This text will notify you of any events in game</p>
-        <button id="startButton" onclick="startGame()">Start Game</button>
+        <div id="buttonParent">
+            <button id="startButton" onclick="startGame()">Start Game</button>
+            <button id="resetButton" onclick="resetGame()">Reset Game</button>
+        </div>
         <script src="minesweeper.js"></script>
         <script src="timer.js"></script>
     </div>

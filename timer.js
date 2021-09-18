@@ -39,13 +39,18 @@ function runTimer() {
         if (hours < 10) {
             hourString = '0' + String(hours);
         }
-        document.getElementById('timerP').innerHTML = 'Timer: ' + hourString + ':' + minuteString + ':' + secondString
+        document.getElementById('timerP').innerHTML = 'Timer: ' + hourString + ':' + minuteString + ':' + secondString;
     }
 }
 
 //when called, stops timer
-function stopTimer() {
+function stopTimer(callReset) {
     clearInterval(interval);
+    if (callReset == true) {
+        resetTimer();
+    } else {
+        console.log('no');
+    }
 }
 
 //when called, resets timer to 00:00:00
@@ -53,4 +58,8 @@ function resetTimer() {
     seconds = 0;
     minutes = 0;
     hours = 0;
+    secondString = '00';
+    minuteString = '00';
+    hourString = '00';
+    document.getElementById('timerP').innerHTML = 'Timer: ' + hourString + ':' + minuteString + ':' + secondString;
 }

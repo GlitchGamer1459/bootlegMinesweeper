@@ -109,7 +109,7 @@ function startGame() {
         gridBuilt = true;
     }
 
-    //generates a 2d array of cell objects within <global>
+    //generates a 2d array of cell objects within startGame
     //create subarrays
     for (var i = 0; i < boardSize; i++) {
         board.push([]);
@@ -286,9 +286,25 @@ function resetGame() {
     tableKill.remove();
     document.getElementById('notify').innerHTML = 'This text will notify you of any events in game';
     document.getElementById('buttonParent').insertBefore(buttonKill, resetButton);
+    a = 0;
     for (var i = 0; i < boardSize; i++) {
         for (var o = 0; o < boardSize; o++) {
-
+            a = a + 1;
+            eval('cell' + a + ' = null');
+            board[i][o] = null;
         }
     }
+    console.log(board);
+    for (var i = 0; i < boardSize; i++) {
+        board.pop();
+    }
+    console.log(board);
+    gridBuilt = false;
+    flagCount = 0;
+    a = 0;
+    q = 0;
+    y = 0;
+    didWin = 0;
+    boardSize = 11;
+    mineNumber = 15;
 }

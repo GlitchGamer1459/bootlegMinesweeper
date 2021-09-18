@@ -214,12 +214,20 @@ function startGame() {
                 eval('cell' + cellID + '.tileState = 1');
                 p = eval('cell' + cellID + '.tileValue');
                 document.getElementById(cellID).innerHTML = p;
-                document.getElementById(cellID).style.backgroundColor = 'darkgray';
+                document.getElementById(cellID).style.backgroundColor = 'gray';
                 if (p == 9) {
                     didWin = 1;
                     document.getElementById('notify').innerHTML = 'you lost';
                     document.getElementById(cellID).style.backgroundColor = 'black';
                     stopTimer();
+                } else if (p == 0) {
+                    console.log('the 0 chunking algorithm goes here');
+                } else if (p == 1) {
+                    document.getElementById(cellID).style.color = 'lime';
+                } else if (p == 2) {
+                    document.getElementById(cellID).style.color = 'orange';
+                } else if (p > 2 && p < 9) {
+                    document.getElementById(cellID).style.color = 'red';
                 }
             }
         //right click

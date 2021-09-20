@@ -5,8 +5,8 @@ var prevTileValue;
 //adds event listener to window object and sets up board
 function load() {
     window.addEventListener('keydown', getKey, false);
-    initialTile();
-    initialTile();
+    randomTile();
+    randomTile();
 }
 
 //runs the function related to the key pressed
@@ -119,20 +119,6 @@ function up() {
 function down() {
     randomTile()
     console.log('down');
-}
-
-//sets the initial board state
-function initialTile() {
-    rTileCoord = Math.floor(Math.random() * 16) + 1;
-    rTileValue = Math.floor(Math.random() * 4) + 1;
-    if (prevTileValue != '') {
-        randomTile();
-    }
-    if (rTileValue <= 3) {
-        document.getElementById(rTileCoord).innerHTML = 2;
-    } else if (rTileValue == 4) {
-        document.getElementById(rTileCoord).innerHTML = 4;
-    }
 }
 
 //generates a random tile when called

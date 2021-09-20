@@ -2,9 +2,11 @@ var rTileCoord = 0;
 var rTileValue = 0;
 var prevTileValue;
 
-//adds event listener to window object
+//adds event listener to window object and sets up board
 function load() {
     window.addEventListener('keydown', getKey, false);
+    initialTile();
+    initialTile();
 }
 
 //runs the function related to the key pressed
@@ -17,15 +19,88 @@ function getKey(keyValue) {
         right();
     } else if (keyValue.keyCode == 40) {
         down();
-    } else {
-        return;
     }
 }
 
 //runs the left Arrow code
 function left() {
-    randomTile()
-    console.log('left');
+    //row 1
+    for (var i = 1; i < 5; i++) {
+        currentCell = document.getElementById(i).innerHTML;
+        if (currentCell != '') {
+            if (document.getElementById(1).innerHTML == '') {
+                document.getElementById(1).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(2).innerHTML == '') {
+                document.getElementById(2).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(3).innerHTML == '') {
+                document.getElementById(3).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(4).innerHTML == '') {
+                document.getElementById(4).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            }
+        }
+    }
+    //row 2
+    for (var i = 5; i < 9; i++) {
+        currentCell = document.getElementById(i).innerHTML;
+        if (currentCell != '') {
+            if (document.getElementById(5).innerHTML == '') {
+                document.getElementById(5).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(6).innerHTML == '') {
+                document.getElementById(6).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(7).innerHTML == '') {
+                document.getElementById(7).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(8).innerHTML == '') {
+                document.getElementById(8).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            }
+        }
+    }
+    //row 3
+    for (var i = 9; i < 13; i++) {
+        currentCell = document.getElementById(i).innerHTML;
+        if (currentCell != '') {
+            if (document.getElementById(9).innerHTML == '') {
+                document.getElementById(9).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(10).innerHTML == '') {
+                document.getElementById(10).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(11).innerHTML == '') {
+                document.getElementById(11).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(12).innerHTML == '') {
+                document.getElementById(12).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            }
+        }
+    }
+    //row 4
+    for (var i = 13; i < 17; i++) {
+        currentCell = document.getElementById(i).innerHTML;
+        if (currentCell != '') {
+            if (document.getElementById(13).innerHTML == '') {
+                document.getElementById(13).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(14).innerHTML == '') {
+                document.getElementById(14).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(15).innerHTML == '') {
+                document.getElementById(15).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            } else if (document.getElementById(16).innerHTML == '') {
+                document.getElementById(16).innerHTML = currentCell;
+                document.getElementById(i).innerHTML = '';
+            }
+        }
+    }
+    randomTile();
 }
 
 //runs the right Arrow code
@@ -44,6 +119,20 @@ function up() {
 function down() {
     randomTile()
     console.log('down');
+}
+
+//sets the initial board state
+function initialTile() {
+    rTileCoord = Math.floor(Math.random() * 16) + 1;
+    rTileValue = Math.floor(Math.random() * 4) + 1;
+    if (prevTileValue != '') {
+        randomTile();
+    }
+    if (rTileValue <= 3) {
+        document.getElementById(rTileCoord).innerHTML = 2;
+    } else if (rTileValue == 4) {
+        document.getElementById(rTileCoord).innerHTML = 4;
+    }
 }
 
 //generates a random tile when called

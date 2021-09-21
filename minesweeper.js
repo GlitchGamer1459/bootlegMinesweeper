@@ -221,7 +221,7 @@ function startGame() {
                     document.getElementById(cellID).style.backgroundColor = 'black';
                     stopTimer();
                 } else if (p == 0) {
-                    console.log('the 0 chunking algorithm goes here');
+                    chunk(cellID);
                 } else if (p == 1) {
                     document.getElementById(cellID).style.color = 'lime';
                 } else if (p == 2) {
@@ -278,6 +278,18 @@ function startGame() {
         if (didWin == 2) {
             document.getElementById('notify').innerHTML = 'you win!';
             stopTimer();
+        }
+    }
+
+    //meant to clear out adjacent 0's and 1-8's 
+    function chunk(cellID) {
+        chunkOrigin = eval('cell' + cellID);
+        console.log('origin of chunk attempt: ' + chunkOrigin.tileID);
+        if (eval('cell' + cellID + '.tileState') == 0) {
+            eval('cell' + cellID + '.tileState = 1');
+            console.log('beginning chunk');
+        } else {
+            console.log('attempt failed: revealed tile');
         }
     }
 

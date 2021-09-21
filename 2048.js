@@ -43,6 +43,18 @@ function left() {
             }
         }
     }
+    if (document.getElementById(1).innerHTML == document.getElementById(2).innerHTML && document.getElementById(1).innerHTML != '') {
+        document.getElementById(1).innerHTML = document.getElementById(1).innerHTML * 2;
+        document.getElementById(2).innerHTML = '';
+    }
+    if (document.getElementById(2).innerHTML == document.getElementById(3).innerHTML && document.getElementById(2).innerHTML != '') {
+        document.getElementById(2).innerHTML = document.getElementById(2).innerHTML * 2;
+        document.getElementById(3).innerHTML = '';
+    }
+    if (document.getElementById(3).innerHTML == document.getElementById(4).innerHTML && document.getElementById(3).innerHTML != '') {
+        document.getElementById(3).innerHTML = document.getElementById(3).innerHTML * 2;
+        document.getElementById(4).innerHTML = '';
+    }
     //row 2
     for (var i = 5; i < 9; i++) {
         currentCell = document.getElementById(i).innerHTML;
@@ -61,6 +73,18 @@ function left() {
                 document.getElementById(i).innerHTML = '';
             }
         }
+    }
+    if (document.getElementById(5).innerHTML == document.getElementById(6).innerHTML && document.getElementById(5).innerHTML != '') {
+        document.getElementById(5).innerHTML = document.getElementById(5).innerHTML * 2;
+        document.getElementById(6).innerHTML = '';
+    }
+    if (document.getElementById(6).innerHTML == document.getElementById(7).innerHTML && document.getElementById(2).innerHTML != '') {
+        document.getElementById(6).innerHTML = document.getElementById(6).innerHTML * 2;
+        document.getElementById(7).innerHTML = '';
+    }
+    if (document.getElementById(7).innerHTML == document.getElementById(8).innerHTML && document.getElementById(3).innerHTML != '') {
+        document.getElementById(7).innerHTML = document.getElementById(7).innerHTML * 2;
+        document.getElementById(8).innerHTML = '';
     }
     //row 3
     for (var i = 9; i < 13; i++) {
@@ -81,6 +105,18 @@ function left() {
             }
         }
     }
+    if (document.getElementById(9).innerHTML == document.getElementById(10).innerHTML && document.getElementById(5).innerHTML != '') {
+        document.getElementById(9).innerHTML = document.getElementById(9).innerHTML * 2;
+        document.getElementById(10).innerHTML = '';
+    }
+    if (document.getElementById(10).innerHTML == document.getElementById(11).innerHTML && document.getElementById(2).innerHTML != '') {
+        document.getElementById(10).innerHTML = document.getElementById(10).innerHTML * 2;
+        document.getElementById(11).innerHTML = '';
+    }
+    if (document.getElementById(11).innerHTML == document.getElementById(12).innerHTML && document.getElementById(3).innerHTML != '') {
+        document.getElementById(11).innerHTML = document.getElementById(11).innerHTML * 2;
+        document.getElementById(12).innerHTML = '';
+    }
     //row 4
     for (var i = 13; i < 17; i++) {
         currentCell = document.getElementById(i).innerHTML;
@@ -100,7 +136,19 @@ function left() {
             }
         }
     }
-    randomTile();
+    if (document.getElementById(13).innerHTML == document.getElementById(14).innerHTML && document.getElementById(5).innerHTML != '') {
+        document.getElementById(13).innerHTML = document.getElementById(13).innerHTML * 2;
+        document.getElementById(14).innerHTML = '';
+    }
+    if (document.getElementById(14).innerHTML == document.getElementById(15).innerHTML && document.getElementById(2).innerHTML != '') {
+        document.getElementById(14).innerHTML = document.getElementById(14).innerHTML * 2;
+        document.getElementById(15).innerHTML = '';
+    }
+    if (document.getElementById(15).innerHTML == document.getElementById(16).innerHTML && document.getElementById(3).innerHTML != '') {
+        document.getElementById(15).innerHTML = document.getElementById(15).innerHTML * 2;
+        document.getElementById(16).innerHTML = '';
+    }
+    //randomTile();
 }
 
 //runs the right Arrow code

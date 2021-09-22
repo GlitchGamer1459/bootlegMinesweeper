@@ -61,8 +61,15 @@ function right() {
 
 //runs the up Arrow code
 function up() {
+    //column 1
+    moveTilesU(1, 5, 9, 13);
+    //column 2
+    moveTilesU(2, 6, 10, 14);
+    //column 3
+    moveTilesU(3, 7, 11, 15);
+    //column 4
+    moveTilesU(4, 8, 12, 16);
     randomTile()
-    console.log('up');
 }
 
 //runs the down Arrow code
@@ -143,7 +150,6 @@ function moveTilesR(a, b, c, d, e, f) {
     }
     console.log(carry);
     counter = 0;
-    console.log(carry);
     carryLength = carry.length
     carryLengthMod = b + carry.length;
     for (var i = b; i < carryLengthMod; i++) {
@@ -151,4 +157,48 @@ function moveTilesR(a, b, c, d, e, f) {
         counter = counter + 1;
     }
     carry = [];
+}
+
+//moves all parametered tiles up
+function moveTilesU(a, b, c, d) {
+    //1 5 9 13
+    r1s1 = Number(document.getElementById(a).innerHTML);
+    r1s2 = Number(document.getElementById(b).innerHTML);
+    r1s3 = Number(document.getElementById(c).innerHTML);
+    r1s4 = Number(document.getElementById(d).innerHTML);
+    carry.push(r1s1, r1s2, r1s3, r1s4);
+    console.log(carry);
+    document.getElementById(a).innerHTML = '';
+    document.getElementById(b).innerHTML = '';
+    document.getElementById(c).innerHTML = '';
+    document.getElementById(d).innerHTML = '';
+    for (var i = 0; i < 4; i++) {
+        index = carry.indexOf(0);
+        if (carry[index] == 0) {
+            carry.splice(index, 1);
+        }
+    }
+    console.log('break');
+    console.log(carry);
+    if (carry.length == 1) {
+        document.getElementById(a).innerHTML = carry[0];
+    } else if (carry.length == 2) {
+        document.getElementById(a).innerHTML = carry[0];
+        document.getElementById(b).innerHTML = carry[1];
+    } else if (carry.length == 3) {
+        document.getElementById(a).innerHTML = carry[0];
+        document.getElementById(b).innerHTML = carry[1];
+        document.getElementById(c).innerHTML = carry[2];
+    } else if (carry.length == 4) {
+        document.getElementById(a).innerHTML = carry[0];
+        document.getElementById(b).innerHTML = carry[1];
+        document.getElementById(c).innerHTML = carry[2];
+        document.getElementById(d).innerHTML = carry[3];
+    }
+    carry = [];
+}
+
+//moves all parametered tiles down
+function moveTilesD() {
+
 }

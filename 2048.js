@@ -36,20 +36,27 @@ function getKey(keyValue) {
 //runs the left Arrow code
 function left() {
     //row 1
-    moveTiles(0, 1, 2, 3, 4, 5);
+    moveTilesL(0, 1, 2, 3, 4, 5);
     //row 2
-    moveTiles(4, 5, 6, 7, 8, 9);
+    moveTilesL(4, 5, 6, 7, 8, 9);
     //row 3
-    moveTiles(8, 9, 10, 11, 12, 13);
+    moveTilesL(8, 9, 10, 11, 12, 13);
     //row 4
-    moveTiles(12, 13, 14, 15, 16, 17);
-    //randomTile();
+    moveTilesL(12, 13, 14, 15, 16, 17);
+    randomTile();
 }
 
 //runs the right Arrow code
 function right() {
-    randomTile()
-    console.log('right');
+    //row 1
+    moveTilesR(0, 1, 2, 3, 4, 5);
+    //row 2
+    moveTilesR(4, 5, 6, 7, 8, 9);
+    //row 3
+    moveTilesR(8, 9, 10, 11, 12, 13);
+    //row 4
+    moveTilesR(12, 13, 14, 15, 16, 17);
+    randomTile();
 }
 
 //runs the up Arrow code
@@ -79,8 +86,8 @@ function randomTile() {
     }
 }
 
-//moves all parametered tiles to a specific direction
-function moveTiles(a, b, c, d, e, f) {
+//moves all parametered tiles to the left
+function moveTilesL(a, b, c, d, e, f) {
     r1s1 = Number(document.getElementById(b).innerHTML);
     r1s2 = Number(document.getElementById(c).innerHTML);
     r1s3 = Number(document.getElementById(d).innerHTML);
@@ -95,6 +102,46 @@ function moveTiles(a, b, c, d, e, f) {
             carry.splice(index, 1);
         }
     }
+    counter = 0;
+    console.log(carry);
+    carryLength = carry.length
+    carryLengthMod = b + carry.length;
+    for (var i = b; i < carryLengthMod; i++) {
+        document.getElementById(i).innerHTML = carry[counter];
+        counter = counter + 1;
+    }
+    carry = [];
+}
+
+//moves all parametered tiles to the right
+function moveTilesR(a, b, c, d, e, f) {
+    r1s1 = Number(document.getElementById(b).innerHTML);
+    r1s2 = Number(document.getElementById(c).innerHTML);
+    r1s3 = Number(document.getElementById(d).innerHTML);
+    r1s4 = Number(document.getElementById(e).innerHTML);
+    carry.push(r1s1, r1s2, r1s3, r1s4);
+    for (var i = b; i < f; i++) {
+        document.getElementById(i).innerHTML = '';
+    }
+    for (var i = a; i < e; i++) {
+        index = carry.indexOf(0);
+        if (carry[index] == 0) {
+            carry.splice(index, 1);
+        }
+    }
+    if (carry.length == 4) {
+        
+    } else if (carry.length == 3) {
+        carry.unshift('');
+    } else if (carry.length == 2) {
+        carry.unshift('');
+        carry.unshift('');
+    } else if (carry.length == 1) {
+        carry.unshift('');
+        carry.unshift('');
+        carry.unshift('');
+    }
+    console.log(carry);
     counter = 0;
     console.log(carry);
     carryLength = carry.length

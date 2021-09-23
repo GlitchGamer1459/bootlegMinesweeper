@@ -202,10 +202,10 @@ function moveTilesU(a, b, c, d) {
 
 //moves all parametered tiles down
 function moveTilesD(a, b, c, d) {
-    r1s1 = Number(document.getElementById(a).innerHTML);
-    r1s2 = Number(document.getElementById(b).innerHTML);
-    r1s3 = Number(document.getElementById(c).innerHTML);
-    r1s4 = Number(document.getElementById(d).innerHTML);
+    r1s1 = Number(document.getElementById(d).innerHTML);
+    r1s2 = Number(document.getElementById(c).innerHTML);
+    r1s3 = Number(document.getElementById(b).innerHTML);
+    r1s4 = Number(document.getElementById(a).innerHTML);
     carry.push(r1s1, r1s2, r1s3, r1s4);
     document.getElementById(a).innerHTML = '';
     document.getElementById(b).innerHTML = '';

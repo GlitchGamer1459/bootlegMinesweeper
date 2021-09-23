@@ -74,8 +74,15 @@ function up() {
 
 //runs the down Arrow code
 function down() {
+    //column 1
+    moveTilesD(1, 5, 9, 13);
+    //column 2
+    moveTilesD(2, 6, 10, 14);
+    //column 3
+    moveTilesD(3, 7, 11, 15);
+    //column 4
+    moveTilesD(4, 8, 12, 16);
     randomTile()
-    console.log('down');
 }
 
 //generates a random tile when called
@@ -110,7 +117,6 @@ function moveTilesL(a, b, c, d, e, f) {
         }
     }
     counter = 0;
-    console.log(carry);
     carryLength = carry.length
     carryLengthMod = b + carry.length;
     for (var i = b; i < carryLengthMod; i++) {
@@ -148,7 +154,6 @@ function moveTilesR(a, b, c, d, e, f) {
         carry.unshift('');
         carry.unshift('');
     }
-    console.log(carry);
     counter = 0;
     carryLength = carry.length
     carryLengthMod = b + carry.length;
@@ -167,7 +172,6 @@ function moveTilesU(a, b, c, d) {
     r1s3 = Number(document.getElementById(c).innerHTML);
     r1s4 = Number(document.getElementById(d).innerHTML);
     carry.push(r1s1, r1s2, r1s3, r1s4);
-    console.log(carry);
     document.getElementById(a).innerHTML = '';
     document.getElementById(b).innerHTML = '';
     document.getElementById(c).innerHTML = '';
@@ -178,8 +182,6 @@ function moveTilesU(a, b, c, d) {
             carry.splice(index, 1);
         }
     }
-    console.log('break');
-    console.log(carry);
     if (carry.length == 1) {
         document.getElementById(a).innerHTML = carry[0];
     } else if (carry.length == 2) {
@@ -199,6 +201,36 @@ function moveTilesU(a, b, c, d) {
 }
 
 //moves all parametered tiles down
-function moveTilesD() {
-
+function moveTilesD(a, b, c, d) {
+    r1s1 = Number(document.getElementById(a).innerHTML);
+    r1s2 = Number(document.getElementById(b).innerHTML);
+    r1s3 = Number(document.getElementById(c).innerHTML);
+    r1s4 = Number(document.getElementById(d).innerHTML);
+    carry.push(r1s1, r1s2, r1s3, r1s4);
+    document.getElementById(a).innerHTML = '';
+    document.getElementById(b).innerHTML = '';
+    document.getElementById(c).innerHTML = '';
+    document.getElementById(d).innerHTML = '';
+    for (var i = 0; i < 4; i++) {
+        index = carry.indexOf(0);
+        if (carry[index] == 0) {
+            carry.splice(index, 1);
+        }
+    }
+    if (carry.length == 1) {
+        document.getElementById(d).innerHTML = carry[0];
+    } else if (carry.length == 2) {
+        document.getElementById(d).innerHTML = carry[0];
+        document.getElementById(c).innerHTML = carry[1];
+    } else if (carry.length == 3) {
+        document.getElementById(d).innerHTML = carry[0];
+        document.getElementById(c).innerHTML = carry[1];
+        document.getElementById(b).innerHTML = carry[2];
+    } else if (carry.length == 4) {
+        document.getElementById(d).innerHTML = carry[0];
+        document.getElementById(c).innerHTML = carry[1];
+        document.getElementById(b).innerHTML = carry[2];
+        document.getElementById(a).innerHTML = carry[3];
+    }
+    carry = [];
 }

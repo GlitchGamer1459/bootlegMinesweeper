@@ -12,6 +12,7 @@ var index;
 var carryLength;
 var carryLengthMod;
 var counter;
+var winState = 0;
 
 //adds event listener to window object and sets up board
 function load() {
@@ -22,13 +23,13 @@ function load() {
 
 //runs the function related to the key pressed
 function getKey(keyValue) {
-    if (keyValue.keyCode == 37) {
+    if (keyValue.keyCode == 37 && winState == 0) {
         left();
-    } else if (keyValue.keyCode == 38) {
+    } else if (keyValue.keyCode == 38 && winState == 0) {
         up();
-    } else if (keyValue.keyCode == 39) {
+    } else if (keyValue.keyCode == 39 && winState == 0) {
         right();
-    } else if (keyValue.keyCode == 40) {
+    } else if (keyValue.keyCode == 40 && winState == 0) {
         down();
     }
 }
@@ -44,6 +45,7 @@ function left() {
     //row 4
     moveTilesL(12, 13, 14, 15, 16, 17);
     randomTile();
+    winScan();
 }
 
 //runs the right Arrow code
@@ -57,6 +59,7 @@ function right() {
     //row 4
     moveTilesR(12, 13, 14, 15, 16, 17);
     randomTile();
+    winScan();
 }
 
 //runs the up Arrow code
@@ -69,7 +72,8 @@ function up() {
     moveTilesU(3, 7, 11, 15);
     //column 4
     moveTilesU(4, 8, 12, 16);
-    randomTile()
+    randomTile();
+    winScan();
 }
 
 //runs the down Arrow code
@@ -82,7 +86,8 @@ function down() {
     moveTilesD(3, 7, 11, 15);
     //column 4
     moveTilesD(4, 8, 12, 16);
-    randomTile()
+    randomTile();
+    winScan();
 }
 
 //generates a random tile when called
@@ -126,7 +131,6 @@ function moveTilesL(a, b, c, d, e, f) {
         carry[2] = carry[2] + carry[3];
         carry[3] = 0;
     }
-    console.log(carry);
     for (var i = a; i < e; i++) {
         index = carry.indexOf(0);
         if (carry[index] == 0) {
@@ -152,6 +156,22 @@ function moveTilesR(a, b, c, d, e, f) {
     carry.push(r1s1, r1s2, r1s3, r1s4);
     for (var i = b; i < f; i++) {
         document.getElementById(i).innerHTML = '';
+    }
+    for (var i = a; i < e; i++) {
+        index = carry.indexOf(0);
+        if (carry[index] == 0) {
+            carry.splice(index, 1);
+        }
+    }
+    if (carry[0] == carry[1] && carry[0] > 0) {
+        carry[0] = carry[0] + carry[1];
+        carry[1] = 0;
+    } else if (carry[1] == carry[2] && carry[1] > 0) {
+        carry[1] = carry[1] + carry[2];
+        carry[2] = 0;
+    } else if (carry[2] == carry[3] && carry[2] > 0) {
+        carry[2] = carry[2] + carry[3];
+        carry[3] = 0;
     }
     for (var i = a; i < e; i++) {
         index = carry.indexOf(0);
@@ -250,4 +270,28 @@ function moveTilesD(a, b, c, d) {
         document.getElementById(a).innerHTML = carry[3];
     }
     carry = [];
+}
+
+//winscan
+function winScan() {
+    var counter = 0;
+    winState = 0;
+    for (var i = 1; i < 17; i++) {
+        if (document.getElementById(i).innerHTML > 0) {
+            counter = counter + 1;
+        }
+        if (document.getElementById(i).innerHTML == 2048) {
+            winState = 2;
+        }
+    }
+    if (counter == 16 && winState == 0) {
+        winState = 1;
+    } else {
+        counter = 0;
+    }
+    if (winState == 1) {
+        document.getElementById('notify').innerHTML = 'You lose.';
+    } else if (winState == 2) {
+        document.getElementById('notify').innerHTML = 'You win!';
+    }
 }

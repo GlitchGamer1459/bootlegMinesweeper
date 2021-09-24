@@ -15,6 +15,7 @@
     height: 20px;
     vertical-align: middle;
     text-align: center;
+    transition: background-color 0.25s;
 }
 
 .MStable td:hover {
@@ -35,12 +36,16 @@
     color: white;
     text-decoration: none;
     font-size: 20px;
+    border-color: #555;
+    transition: background-color 0.5s;
+    transition: border-color 0.3s;
 }
 
 .navBar a:hover {
     padding: 10px;
     background-color: black;
-    border: 2px solid #404040;
+    border: 2px solid;
+    border-color: #404040;
 }
 
 a.active {

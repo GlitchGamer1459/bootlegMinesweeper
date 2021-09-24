@@ -116,6 +116,23 @@ function moveTilesL(a, b, c, d, e, f) {
             carry.splice(index, 1);
         }
     }
+    if (carry[0] == carry[1] && carry[0] > 0) {
+        carry[0] = carry[0] + carry[1];
+        carry[1] = 0;
+    } else if (carry[1] == carry[2] && carry[1] > 0) {
+        carry[1] = carry[1] + carry[2];
+        carry[2] = 0;
+    } else if (carry[2] == carry[3] && carry[2] > 0) {
+        carry[2] = carry[2] + carry[3];
+        carry[3] = 0;
+    }
+    console.log(carry);
+    for (var i = a; i < e; i++) {
+        index = carry.indexOf(0);
+        if (carry[index] == 0) {
+            carry.splice(index, 1);
+        }
+    }
     counter = 0;
     carryLength = carry.length
     carryLengthMod = b + carry.length;
@@ -155,7 +172,7 @@ function moveTilesR(a, b, c, d, e, f) {
         carry.unshift('');
     }
     counter = 0;
-    carryLength = carry.length
+    carryLength = carry.length;
     carryLengthMod = b + carry.length;
     for (var i = b; i < carryLengthMod; i++) {
         document.getElementById(i).innerHTML = carry[counter];

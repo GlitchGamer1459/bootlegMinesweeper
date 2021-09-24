@@ -219,6 +219,22 @@ function moveTilesU(a, b, c, d) {
             carry.splice(index, 1);
         }
     }
+    if (carry[0] == carry[1] && carry[0] > 0) {
+        carry[0] = carry[0] + carry[1];
+        carry[1] = 0;
+    } else if (carry[1] == carry[2] && carry[1] > 0) {
+        carry[1] = carry[1] + carry[2];
+        carry[2] = 0;
+    } else if (carry[2] == carry[3] && carry[2] > 0) {
+        carry[2] = carry[2] + carry[3];
+        carry[3] = 0;
+    }
+    for (var i = 0; i < 4; i++) {
+        index = carry.indexOf(0);
+        if (carry[index] == 0) {
+            carry.splice(index, 1);
+        }
+    }
     if (carry.length == 1) {
         document.getElementById(a).innerHTML = carry[0];
     } else if (carry.length == 2) {
@@ -248,6 +264,22 @@ function moveTilesD(a, b, c, d) {
     document.getElementById(b).innerHTML = '';
     document.getElementById(c).innerHTML = '';
     document.getElementById(d).innerHTML = '';
+    for (var i = 0; i < 4; i++) {
+        index = carry.indexOf(0);
+        if (carry[index] == 0) {
+            carry.splice(index, 1);
+        }
+    }
+    if (carry[0] == carry[1] && carry[0] > 0) {
+        carry[0] = carry[0] + carry[1];
+        carry[1] = 0;
+    } else if (carry[1] == carry[2] && carry[1] > 0) {
+        carry[1] = carry[1] + carry[2];
+        carry[2] = 0;
+    } else if (carry[2] == carry[3] && carry[2] > 0) {
+        carry[2] = carry[2] + carry[3];
+        carry[3] = 0;
+    }
     for (var i = 0; i < 4; i++) {
         index = carry.indexOf(0);
         if (carry[index] == 0) {

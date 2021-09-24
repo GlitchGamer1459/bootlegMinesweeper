@@ -99,3 +99,9 @@ a.active {
     text-align: center;
     font-size: 30px;
 }
+
+.TFEtext {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}

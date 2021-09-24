@@ -12,24 +12,63 @@ var index;
 var carryLength;
 var carryLengthMod;
 var counter;
+
+var startGame = false;
 var winState = 0;
+
+var startButton;
+var resetButton;
+var startText;
+var resetText;
 
 //adds event listener to window object and sets up board
 function load() {
     window.addEventListener('keydown', getKey, false);
-    randomTile();
-    randomTile();
+    startButton = document.createElement('button');
+    startButton.setAttribute('id', 'start');
+    startText = document.createTextNode('Start Button');
+    startButton.appendChild(startText);
+    startButton.addEventListener('click', function () {
+        buttonSwap();
+    });
+    resetButton = document.createElement('button');
+    resetButton.setAttribute('id', 'reset');
+    resetText = document.createTextNode('Reset Button');
+    resetButton.appendChild(resetText);
+    resetButton.addEventListener('click', function () {
+        buttonSwap();
+    });
+    document.getElementById('buttons').appendChild(startButton);
+}
+
+//flips which button is active
+function buttonSwap() {
+    if (startGame == false) {
+        randomTile();
+        randomTile();
+        startGame = true;
+        var remove = document.getElementById('buttons');
+        remove.removeChild(remove.childNodes[1]);
+        document.getElementById('buttons').appendChild(resetButton);
+        document.getElementById('notify').innerHTML = 'Game Started.'
+    } else if (startGame == true) {
+        startGame = false;
+        remove = document.getElementById('buttons');
+        remove.removeChild(remove.childNodes[1]);
+        document.getElementById('buttons').appendChild(startButton);
+        reset();
+    }
 }
 
 //runs the function related to the key pressed
 function getKey(keyValue) {
-    if (keyValue.keyCode == 37 && winState == 0) {
+    if (keyValue.keyCode == 37 && winState == 0 && startGame == true) {
         left();
-    } else if (keyValue.keyCode == 38 && winState == 0) {
+    } else if (keyValue.keyCode == 38 && winState == 0 && startGame == true) {
         up();
-    } else if (keyValue.keyCode == 39 && winState == 0) {
+    } else if (keyValue.keyCode == 39 && winState == 0 && startGame == true) {
         right();
-    } else if (keyValue.keyCode == 40 && winState == 0) {
+    } else if (keyValue.keyCode == 40 && winState == 0 && startGame == true) {
         down();
     }
 }
@@ -326,4 +365,14 @@ function winScan() {
     } else if (winState == 2) {
         document.getElementById('notify').innerHTML = 'You win!';
     }
+}
+
+//resets board and conditional variables
+function reset() {
+    for (var i = 1; i < 17; i++) {
+        document.getElementById(i).innerHTML = '';
+    }
+    winState = 0;
+    start = false;
+    document.getElementById('notify').innerHTML = 'This will notify you of events in the game.';
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing</title>
+    <link rel="stylesheet" href="file.css" />
+</head>
+<body>
+    <p id="timerP"></p>
+    <button onclick="timer.stop()">Stop top timer</button>
+
+    <p id="demo"></p>
+    <button onclick="timer2.stop(true)">Stop Bottom Timer</button>
+    
+    <script src="timerNew.js"></script>
+    <script>
+        const timer = new Timer("timerP");
+        const timer2 = new Timer("demo");
+        timer.start();
+        timer2.start();
+    </script>
+</body>
+</html>

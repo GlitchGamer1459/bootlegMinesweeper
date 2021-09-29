@@ -73,7 +73,6 @@ function startGame() {
     buttonKill.remove('startButton');
     setInputs();
     buildGrid();
-    startTimer();
 
     //builds the visible board in index.html
     function buildGrid() {
@@ -219,7 +218,6 @@ function startGame() {
                     didWin = 1;
                     document.getElementById('notify').innerHTML = 'you lost';
                     document.getElementById(cellID).style.backgroundColor = 'black';
-                    stopTimer();
                 } else if (p == 0) {
                     chunk(cellID);
                 } else if (p == 1) {
@@ -277,7 +275,6 @@ function startGame() {
         //declare win
         if (didWin == 2) {
             document.getElementById('notify').innerHTML = 'you win!';
-            stopTimer();
         }
     }
 
@@ -298,7 +295,6 @@ function startGame() {
 
 //when called, wipes the board from DOM and undefines cellX objects
 function resetGame() {
-    stopTimer(true);
     tableKill = document.getElementById('myTable');
     while (tableKill.hasChildNodes()) {
         tableKill.removeChild(tableKill.firstChild);

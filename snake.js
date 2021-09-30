@@ -63,6 +63,7 @@ function start() {
     apple(false, 10, 16);
     snakeGen();
     update();
+    startCycle();
 }
 
 //gets the Unicode key and triggers direction functions
@@ -117,31 +118,76 @@ function buildBoard() {
 
 //when called, starts a cycle and takes L-R-U-D inputs
 function startCycle() {
-    interval = setInterval(cycle, 750);
+    interval = setInterval(cycle, 350);
 }
 
 //runs the cycle
 function cycle() {
     switch (LRUD) {
         case 0:
+            coordGrid[snake.y][snake.x] = 0;
             snake.x--;
-            coordGrid[snake.y][snake.x] = 2;
+            if (coordGrid[snake.y][snake.x] == 0) {
+                coordGrid[snake.y][snake.x] = 2;
+            } else if (coordGrid[snake.y][snake.x] == 1) {
+                score();
+                coordGrid[snake.y][snake.x] = 2;
+                apple(true);
+            } else {
+                console.log("You lose");
+                clearInterval(interval);
+            }
             break;
         case 1:
+            coordGrid[snake.y][snake.x] = 0;
             snake.x++;
-            coordGrid[snake.y][snake.x] = 2;
+            if (coordGrid[snake.y][snake.x] == 0) {
+                coordGrid[snake.y][snake.x] = 2;
+            } else if (coordGrid[snake.y][snake.x] == 1) {
+                score();
+                coordGrid[snake.y][snake.x] = 2;
+                apple(true);
+            } else {
+                console.log("You lose");
+                clearInterval(interval);
+            }
             break;
         case 2:
+            coordGrid[snake.y][snake.x] = 0;
             snake.y--;
-            coordGrid[snake.y][snake.x] = 2;
+            if (coordGrid[snake.y][snake.x] == 0) {
+                coordGrid[snake.y][snake.x] = 2;
+            } else if (coordGrid[snake.y][snake.x] == 1) {
+                score();
+                coordGrid[snake.y][snake.x] = 2;
+                apple(true);
+            } else {
+                console.log("You lose");
+                clearInterval(interval);
+            }
             break;
         case 3:
+            coordGrid[snake.y][snake.x] = 0;
             snake.y++;
-            coordGrid[snake.y][snake.x] = 2;
+            if (coordGrid[snake.y][snake.x] == 0) {
+                coordGrid[snake.y][snake.x] = 2;
+            } else if (coordGrid[snake.y][snake.x] == 1) {
+                score();
+                coordGrid[snake.y][snake.x] = 2;
+                apple(true);
+            } else {
+                console.log("You lose");
+                clearInterval(interval);
+            }
             break;
     }
+    update();
 }
 
+//when called adds to score
+function score() {
+
+}
 //changes operating direction to left
 function left() {
     LRUD = 0;
@@ -164,6 +210,13 @@ function down() {
 
 //moves the apple to a random location
 function apple(random, x1, y1) {
+    for (var i = 0; i < boardSize; i++) {
+        for (var o = 0; o < boardSize; o++) {
+            if (coordGrid[i][o] == 1) {
+                coordGrid[i][o] = 0;
+            }
+        }
+    }
     if (random === false) {
         coordGrid[x1][y1] = 1;
     } else {

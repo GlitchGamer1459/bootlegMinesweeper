@@ -62,21 +62,20 @@ function buttonSwap() {
 function start() {
     buildBoard();
     apple(false, 10, 16);
-    snakeGen();
     update();
     startCycle();
 }
 
-//gets the Unicode key and triggers direction functions
+//gets the Unicode key and triggers directional changes
 function getKey(keyValue) {
     if (keyValue.keyCode == 37) {
-        left();
+        LRUD = 0;
     } else if (keyValue.keyCode == 38) {
-        up();
+        LRUD = 2;
     } else if (keyValue.keyCode == 39) {
-        right();
+        LRUD = 1;
     } else if (keyValue.keyCode == 40) {
-        down();
+        LRUD = 3;
     }
 }
 
@@ -128,7 +127,11 @@ function cycle() {
         case 0:
             coordGrid[snake.y][snake.x] = 0;
             snake.x--;
-            if (coordGrid[snake.y][snake.x] == 0) {
+            if (snake.x < 0) {
+                snake.x++;
+                console.log("You lose");
+                clearInterval(interval);
+            } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
                 score();
@@ -142,7 +145,11 @@ function cycle() {
         case 1:
             coordGrid[snake.y][snake.x] = 0;
             snake.x++;
-            if (coordGrid[snake.y][snake.x] == 0) {
+            if (snake.x > (boardSize - 1)) {
+                snake.x--;
+                console.log("You lose");
+                clearInterval(interval);
+            } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
                 score();
@@ -156,7 +163,11 @@ function cycle() {
         case 2:
             coordGrid[snake.y][snake.x] = 0;
             snake.y--;
-            if (coordGrid[snake.y][snake.x] == 0) {
+            if (snake.y < 0) {
+                snake.y++;
+                console.log("You lose");
+                clearInterval(interval);
+            } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
                 score();
@@ -170,7 +181,11 @@ function cycle() {
         case 3:
             coordGrid[snake.y][snake.x] = 0;
             snake.y++;
-            if (coordGrid[snake.y][snake.x] == 0) {
+            if (snake.y > (boardSize - 1)) {
+                snake.y--;
+                console.log("You lose");
+                clearInterval(interval);
+            } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
                 score();
@@ -189,25 +204,6 @@ function cycle() {
 function score() {
     scoreCount = scoreCount + 1;
     console.log("Score: " + scoreCount);
-}
-//changes operating direction to left
-function left() {
-    LRUD = 0;
-}
-
-//changes operating direction to right
-function right() {
-    LRUD = 1;
-}
-
-//changes operating direction to up
-function up() {
-    LRUD = 2;
-}
-
-//changes operating direction to down
-function down() {
-    LRUD = 3;
 }
 
 //moves the apple to a random location
@@ -235,11 +231,6 @@ function dick() {
     } else {
         dick();
     }
-}
-
-//places the snake head on the grid;
-function snakeGen() {
-    coordGrid[snake.y][snake.x] = 2;
 }
 
 //updates the DOM board to match the coordGrid

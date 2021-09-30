@@ -1,5 +1,5 @@
 //object constructor for Timer object
-function Timer(timerTag) {
+function Timer(timerTag, timerText) {
     this.interval;
 
     var seconds = 0;
@@ -13,6 +13,9 @@ function Timer(timerTag) {
     //declares the interval to run the timer
     this.start = function () {
         this.interval = setInterval(this.run, 1000);
+        if (timerText === undefined) {
+            timerText = "";
+        }
     }
 
     //when called, increments timer by 1s and formats it
@@ -26,6 +29,9 @@ function Timer(timerTag) {
             hours = hours + 1;
             minutes = 0;
         }
+        secondSt = String(seconds);
+        minuteSt = String(minutes);
+        hourSt = String(hours);
         if (seconds < 10) {
             secondSt = "0" + String(seconds);
         }
@@ -35,7 +41,7 @@ function Timer(timerTag) {
         if (hours < 10) {
             hourSt = "0" + String(hours);
         }
-        document.getElementById(timerTag).innerHTML = hourSt + ":" + minuteSt + ":" + secondSt;
+        document.getElementById(timerTag).innerHTML = timerText + hourSt + ":" + minuteSt + ":" + secondSt;
     }
 
     //when called, stops the timer and may reset timer
@@ -54,6 +60,6 @@ function Timer(timerTag) {
         secondSt = undefined;
         minuteSt = undefined;
         hourSt = undefined;
-        document.getElementById(timerTag).innerHTML = "00:00:00";
+        document.getElementById(timerTag).innerHTML = timerText + "00:00:00";
     }
 }

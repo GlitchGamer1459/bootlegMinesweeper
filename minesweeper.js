@@ -46,6 +46,9 @@ var board = [
 
 ];
 
+//timer
+const timer = new Timer("timerP", "Timer: ");
+
 //disables the context menu from right clicking
 document.oncontextmenu = function () {
     return false;
@@ -73,6 +76,7 @@ function startGame() {
     buttonKill.remove('startButton');
     setInputs();
     buildGrid();
+    timer.start();
 
     //builds the visible board in index.html
     function buildGrid() {
@@ -218,6 +222,7 @@ function startGame() {
                     didWin = 1;
                     document.getElementById('notify').innerHTML = 'you lost';
                     document.getElementById(cellID).style.backgroundColor = 'black';
+                    timer.stop();
                 } else if (p == 0) {
                     chunk(cellID);
                 } else if (p == 1) {
@@ -275,6 +280,7 @@ function startGame() {
         //declare win
         if (didWin == 2) {
             document.getElementById('notify').innerHTML = 'you win!';
+            timer.stop();
         }
     }
 
@@ -299,6 +305,7 @@ function resetGame() {
     while (tableKill.hasChildNodes()) {
         tableKill.removeChild(tableKill.firstChild);
     }
+    timer.stop(true);
     tableKill.remove();
     document.getElementById('notify').innerHTML = 'This text will notify you of any events in game';
     document.getElementById('buttonParent').insertBefore(buttonKill, resetButton);

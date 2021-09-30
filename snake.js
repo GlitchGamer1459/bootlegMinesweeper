@@ -18,6 +18,7 @@ var winState = 0;
 
 var interval;
 var LRUD;
+var scoreCount = 0;
 
 var snake = { x: 5, y: 10 };
 
@@ -186,7 +187,8 @@ function cycle() {
 
 //when called adds to score
 function score() {
-
+    scoreCount = scoreCount + 1;
+    console.log("Score: " + scoreCount);
 }
 //changes operating direction to left
 function left() {
@@ -220,9 +222,18 @@ function apple(random, x1, y1) {
     if (random === false) {
         coordGrid[x1][y1] = 1;
     } else {
-        var x2 = Math.floor(Math.random() * boardSize);
-        var y2 = Math.floor(Math.random() * boardSize);
+        dick();
+    }
+}
+
+//yeet
+function dick() {
+    var x2 = Math.floor(Math.random() * boardSize);
+    var y2 = Math.floor(Math.random() * boardSize);
+    if (coordGrid[x2][y2] == 0) {
         coordGrid[x2][y2] = 1;
+    } else {
+        dick();
     }
 }
 

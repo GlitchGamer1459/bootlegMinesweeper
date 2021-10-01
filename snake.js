@@ -21,6 +21,8 @@ var LRUD;
 var scoreCount = 0;
 
 var snake = { x: 5, y: 10 };
+var sHist1 = { x: 5, y: 10 };
+var sHist2 = { x: 5, y: 10 };
 
 //calls on the loading of the page
 function load() {
@@ -118,7 +120,7 @@ function buildBoard() {
 
 //when called, starts a cycle and takes L-R-U-D inputs
 function startCycle() {
-    interval = setInterval(cycle, 350);
+    interval = setInterval(cycle, 200);
 }
 
 //runs the cycle
@@ -126,6 +128,14 @@ function cycle() {
     switch (LRUD) {
         case 0:
             coordGrid[snake.y][snake.x] = 0;
+            coordGrid[sHist1.y][sHist1.x] = 0;
+            coordGrid[sHist2.y][sHist2.x] = 0;
+            sHist2.x = sHist1.x;
+            sHist2.y = sHist1.y;
+            sHist1.x = snake.x;
+            sHist1.y = snake.y;
+            coordGrid[sHist1.y][sHist1.x] = 3;
+            coordGrid[sHist2.y][sHist2.x] = 3;
             snake.x--;
             if (snake.x < 0) {
                 snake.x++;
@@ -144,6 +154,14 @@ function cycle() {
             break;
         case 1:
             coordGrid[snake.y][snake.x] = 0;
+            coordGrid[sHist1.y][sHist1.x] = 0;
+            coordGrid[sHist2.y][sHist2.x] = 0;
+            sHist2.x = sHist1.x;
+            sHist2.y = sHist1.y;
+            sHist1.x = snake.x;
+            sHist1.y = snake.y;
+            coordGrid[sHist1.y][sHist1.x] = 3;
+            coordGrid[sHist2.y][sHist2.x] = 3;
             snake.x++;
             if (snake.x > (boardSize - 1)) {
                 snake.x--;
@@ -162,6 +180,14 @@ function cycle() {
             break;
         case 2:
             coordGrid[snake.y][snake.x] = 0;
+            coordGrid[sHist1.y][sHist1.x] = 0;
+            coordGrid[sHist2.y][sHist2.x] = 0;
+            sHist2.x = sHist1.x;
+            sHist2.y = sHist1.y;
+            sHist1.x = snake.x;
+            sHist1.y = snake.y;
+            coordGrid[sHist1.y][sHist1.x] = 3;
+            coordGrid[sHist2.y][sHist2.x] = 3;
             snake.y--;
             if (snake.y < 0) {
                 snake.y++;
@@ -180,6 +206,14 @@ function cycle() {
             break;
         case 3:
             coordGrid[snake.y][snake.x] = 0;
+            coordGrid[sHist1.y][sHist1.x] = 0;
+            coordGrid[sHist2.y][sHist2.x] = 0;
+            sHist2.x = sHist1.x;
+            sHist2.y = sHist1.y;
+            sHist1.x = snake.x;
+            sHist1.y = snake.y;
+            coordGrid[sHist1.y][sHist1.x] = 3;
+            coordGrid[sHist2.y][sHist2.x] = 3;
             snake.y++;
             if (snake.y > (boardSize - 1)) {
                 snake.y--;
@@ -246,7 +280,8 @@ function update() {
                 document.getElementById(counter).style.backgroundColor = 'red';
             } else if (coordGrid[i][o] == 2) {
                 document.getElementById(counter).style.backgroundColor = 'lime';
-
+            } else if (coordGrid[i][o] == 3) {
+                document.getElementById(counter).style.backgroundColor = 'green';
             }
         }
     }

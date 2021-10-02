@@ -19,6 +19,7 @@ var winState = 0;
 var interval;
 var LRUD;
 var scoreCount = 0;
+var canKey = true;
 
 var snake = { x: 5, y: 10 };
 var sHist1 = { x: 5, y: 10 };
@@ -69,15 +70,31 @@ function start() {
 }
 
 //gets the Unicode key and triggers directional changes
-function getKey(keyValue) {
-    if (keyValue.keyCode == 37) {
-        LRUD = 0;
-    } else if (keyValue.keyCode == 38) {
-        LRUD = 2;
-    } else if (keyValue.keyCode == 39) {
-        LRUD = 1;
-    } else if (keyValue.keyCode == 40) {
-        LRUD = 3;
+function getKey(event) {
+    if (canKey == true) {
+        switch (event.keyCode) {
+            case 37:
+                if (LRUD != 1) {
+                    LRUD = 0;
+                }
+                break;
+            case 38:
+                if (LRUD != 3) {
+                    LRUD = 2;
+                }
+                break;
+            case 39:
+                if (LRUD != 0) {
+                    LRUD = 1;
+                }
+                break;
+            case 40:
+                if (LRUD != 2) {
+                    LRUD = 3;
+                }
+                break;
+        }
+        canKey = false;
     }
 }
 
@@ -232,6 +249,7 @@ function cycle() {
             break;
     }
     update();
+    canKey = true;
 }
 
 //when called adds to score
@@ -282,6 +300,8 @@ function update() {
                 document.getElementById(counter).style.backgroundColor = 'lime';
             } else if (coordGrid[i][o] == 3) {
                 document.getElementById(counter).style.backgroundColor = 'green';
+            } else if (coordGrid[i][o] >= 10) {
+                document.getElementById(counter).style.backgroundColor = 'black';
             }
         }
     }

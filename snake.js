@@ -7,7 +7,6 @@ var tTile;
 var tText;
 
 var coordGrid = [];
-var gridHist = [];
 
 var startButton;
 var resetButton;
@@ -23,6 +22,8 @@ var scoreCount = 0;
 var canKey = true;
 
 var snake = { x: 5, y: 10 };
+var tail = [];
+//template: { x: 0, y: 0, d: 0}
 
 //calls on the loading of the page
 function load() {
@@ -131,10 +132,6 @@ function buildBoard() {
                 coordGrid[i][o] = 0;
             }
         }
-        //starts up the historic array as a blank
-        for (var i = 0; i < boardSize; i++) {
-            gridHist.push([]);
-        }
     }
 }
 
@@ -143,6 +140,7 @@ function startCycle() {
     interval = setInterval(cycle, 200);
 }
 
+/*
 //runs the historic grid and current grid adjustments for tail extensions
 function hist() {
     for (var i = 0; i < boardSize; i++) {
@@ -181,13 +179,10 @@ function histCont() {                        //so it drags it as a block behind 
         }
     }
 }
+*/
 
 //runs the cycle
 function cycle() {
-    //updates the historic grid
-    for (var i = 0; i < boardSize; i++) {
-        gridHist[i] = coordGrid[i].slice();
-    }
     //runs the movements
     switch (LRUD) {
         case 0:
@@ -198,10 +193,8 @@ function cycle() {
                 console.log("You lose");
                 clearInterval(interval);
             } else if (coordGrid[snake.y][snake.x] == 0) {
-                histCont();
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
-                hist();
                 score();
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
@@ -218,10 +211,8 @@ function cycle() {
                 console.log("You lose");
                 clearInterval(interval);
             } else if (coordGrid[snake.y][snake.x] == 0) {
-                histCont();
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
-                hist();
                 score();
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
@@ -238,10 +229,8 @@ function cycle() {
                 console.log("You lose");
                 clearInterval(interval);
             } else if (coordGrid[snake.y][snake.x] == 0) {
-                histCont();
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
-                hist();
                 score();
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
@@ -258,10 +247,8 @@ function cycle() {
                 console.log("You lose");
                 clearInterval(interval);
             } else if (coordGrid[snake.y][snake.x] == 0) {
-                histCont();
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
-                hist();
                 score();
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);

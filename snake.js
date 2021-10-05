@@ -249,6 +249,8 @@ function cycle() {
 function score() {
     scoreCount = scoreCount + 1;
     console.log("Score: " + scoreCount);
+    tail.push({ x: 0, y: 0 });
+    moveTail();
 }
 
 //moves the apple to a random location

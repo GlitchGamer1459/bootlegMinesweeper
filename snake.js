@@ -74,24 +74,25 @@ function start() {
 
 //gets the Unicode key and triggers directional changes
 function getKey(event) {
+    console.log(event.keyCode);
     if (canKey == true) {
         switch (event.keyCode) {
-            case 37:
+            case 65:
                 if (LRUD != 1) {
                     LRUD = 0;
                 }
                 break;
-            case 38:
+            case 87:
                 if (LRUD != 3) {
                     LRUD = 2;
                 }
                 break;
-            case 39:
+            case 68:
                 if (LRUD != 0) {
                     LRUD = 1;
                 }
                 break;
-            case 40:
+            case 83:
                 if (LRUD != 2) {
                     LRUD = 3;
                 }
@@ -170,7 +171,7 @@ function cycle() {
             snake.x--;
             if (snake.x < 0) {
                 snake.x++;
-                console.log("You lose");
+                document.getElementById("notify").innerHTML = "You lose.";
                 clearInterval(interval);
             } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
@@ -179,7 +180,7 @@ function cycle() {
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
             } else {
-                console.log("You lose");
+                document.getElementById("notify").innerHTML = "You lose.";
                 clearInterval(interval);
             }
             break;
@@ -189,7 +190,7 @@ function cycle() {
             snake.x++;
             if (snake.x > (boardSize - 1)) {
                 snake.x--;
-                console.log("You lose");
+                document.getElementById("notify").innerHTML = "You lose.";
                 clearInterval(interval);
             } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
@@ -198,7 +199,7 @@ function cycle() {
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
             } else {
-                console.log("You lose");
+                document.getElementById("notify").innerHTML = "You lose.";
                 clearInterval(interval);
             }
             break;
@@ -208,7 +209,7 @@ function cycle() {
             snake.y--;
             if (snake.y < 0) {
                 snake.y++;
-                console.log("You lose");
+                document.getElementById("notify").innerHTML = "You lose.";
                 clearInterval(interval);
             } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
@@ -217,7 +218,7 @@ function cycle() {
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
             } else {
-                console.log("You lose");
+                document.getElementById("notify").innerHTML = "You lose.";
                 clearInterval(interval);
             }
             break;
@@ -227,7 +228,7 @@ function cycle() {
             snake.y++;
             if (snake.y > (boardSize - 1)) {
                 snake.y--;
-                console.log("You lose");
+                document.getElementById("notify").innerHTML = "You lose.";
                 clearInterval(interval);
             } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
@@ -236,7 +237,7 @@ function cycle() {
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
             } else {
-                console.log("You lose");
+                document.getElementById("notify").innerHTML = "You lose.";
                 clearInterval(interval);
             }
             break;
@@ -248,7 +249,7 @@ function cycle() {
 //when called adds to score
 function score() {
     scoreCount = scoreCount + 1;
-    console.log("Score: " + scoreCount);
+    document.getElementById("score").innerHTML = "Score: " + scoreCount;
     tail.push({ x: 0, y: 0 });
     moveTail();
 }
@@ -294,4 +295,9 @@ function update() {
             }
         }
     }
+}
+
+//when called, resets the board
+function reset() {
+    console.log("reset");
 }

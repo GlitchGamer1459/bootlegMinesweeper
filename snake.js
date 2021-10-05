@@ -22,7 +22,10 @@ var scoreCount = 0;
 var canKey = true;
 
 var snake = { x: 5, y: 10 };
-var tail = [];
+var tail = [
+    { x: 4, y: 10 },
+    { x: 3, y: 10 }
+];
 //template: { x: 0, y: 0, d: 0}
 
 //calls on the loading of the page
@@ -140,46 +143,22 @@ function startCycle() {
     interval = setInterval(cycle, 200);
 }
 
-/*
-//runs the historic grid and current grid adjustments for tail extensions
-function hist() {
-    for (var i = 0; i < boardSize; i++) {
-        for (var o = 0; o < boardSize; o++) {
-            if (gridHist[i][o] == 2) {
-                coordGrid[i][o] = 3;
-            }
-        }
+//adjusts the tail array to follow the snake object
+//true = x, false = y   true = plus, false = minus
+function moveTail() {
+    for (var i = 0; i < tail.length; i++) {
+        coordGrid[tail[i].y][tail[i].x] = 0;
+    }
+    for (var i = tail.length - 1; i >= 1; i--) {
+        tail[i].x = tail[i - 1].x;
+        tail[i].y = tail[i - 1].y;
+    }
+    tail[0].x = snake.x;
+    tail[0].y = snake.y;
+    for (var i = 0; i < tail.length; i++) {
+        coordGrid[tail[i].y][tail[i].x] = 3;
     }
 }
-
-//runs the tail adjustments for every frame    FIXME: direction of travel is not saved between the moves,
-function histCont() {                        //so it drags it as a block behind the snake, rather than a tail
-    for (var i = 0; i < boardSize; i++) {
-        for (var o = 0; o < boardSize; o++) {
-            if (gridHist[i][o] == 3) {
-                switch (LRUD) {
-                    case 0:
-                        coordGrid[i][o - 1] = 3;
-                        coordGrid[i][o] = 0;
-                        break;
-                    case 1:
-                        coordGrid[i][o + 1] = 3;
-                        coordGrid[i][o] = 0;
-                        break;
-                    case 2:
-                        coordGrid[i - 1][o] = 3;
-                        coordGrid[i][o] = 0;
-                        break;
-                    case 3:
-                        coordGrid[i + 1][o] = 3;
-                        coordGrid[i][o] = 0;
-                        break;
-                }
-            }
-        }
-    }
-}
-*/
 
 //runs the cycle
 function cycle() {
@@ -187,6 +166,7 @@ function cycle() {
     switch (LRUD) {
         case 0:
             coordGrid[snake.y][snake.x] = 0;
+            moveTail();
             snake.x--;
             if (snake.x < 0) {
                 snake.x++;
@@ -205,6 +185,7 @@ function cycle() {
             break;
         case 1:
             coordGrid[snake.y][snake.x] = 0;
+            moveTail();
             snake.x++;
             if (snake.x > (boardSize - 1)) {
                 snake.x--;
@@ -223,6 +204,7 @@ function cycle() {
             break;
         case 2:
             coordGrid[snake.y][snake.x] = 0;
+            moveTail();
             snake.y--;
             if (snake.y < 0) {
                 snake.y++;
@@ -241,6 +223,7 @@ function cycle() {
             break;
         case 3:
             coordGrid[snake.y][snake.x] = 0;
+            moveTail();
             snake.y++;
             if (snake.y > (boardSize - 1)) {
                 snake.y--;
@@ -273,18 +256,18 @@ function apple(random, x1, y1) {
     if (random === false) {
         coordGrid[x1][y1] = 1;
     } else {
-        RfrAPE();
+        randomAppleRec();
     }
 }
 
 //recursive function to randomize apple placement in environment
-function RfrAPE() {
+function randomAppleRec() {
     var x2 = Math.floor(Math.random() * boardSize);
     var y2 = Math.floor(Math.random() * boardSize);
     if (coordGrid[x2][y2] == 0) {
         coordGrid[x2][y2] = 1;
     } else {
-        RfrAPE();
+        randomAppleRec();
     }
 }
 
@@ -292,6 +275,9 @@ function RfrAPE() {
 function update() {
     counter = 0;
     coordGrid[snake.y][snake.x] = 2;
+    for (var i = 0; i < tail.length; i++) {
+        coordGrid[tail[i].y][tail[i].x] = 3;
+    }
     for (var i = 0; i < boardSize; i++) {
         for (var o = 0; o < boardSize; o++) {
             counter++;

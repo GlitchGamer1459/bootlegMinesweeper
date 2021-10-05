@@ -6,7 +6,7 @@ var tRow;
 var tTile;
 var tText;
 
-var coordGrid = [];
+const coordGrid = [];
 
 var startButton;
 var resetButton;
@@ -21,8 +21,8 @@ var LRUD;
 var scoreCount = 0;
 var canKey = true;
 
-var snake = { x: 5, y: 10 };
-var tail = [
+const snake = { x: 5, y: 10 };
+const tail = [
     { x: 4, y: 10 },
     { x: 3, y: 10 }
 ];
@@ -61,6 +61,7 @@ function buttonSwap() {
         var remove = document.getElementById('buttons');
         remove.removeChild(remove.childNodes[1]);
         document.getElementById('buttons').appendChild(startButton);
+        reset();
     }
 }
 
@@ -72,9 +73,33 @@ function start() {
     startCycle();
 }
 
+//when called, resets the board
+function reset() {
+    clearInterval(interval);
+    table = document.getElementById("Stable");
+    table.remove();
+    snake.x = 5;
+    snake.y = 10;
+    while (tail.length > 2) {
+        tail.pop();
+    }
+    tail[0] = { x: 4, y: 10 };
+    tail[1] = { x: 3, y: 10 };
+    while (coordGrid.length > 0) {
+        coordGrid.pop();
+    }
+    startGame = false;
+    winState = 0;
+    LRUD = undefined;
+    scoreCount = 0;
+    canKey = true;
+    counter = 0;
+    document.getElementById("notify").innerHTMl = "This text will notify you of events in game.";
+    document.getElementById("score").innerHTML = "Score: ";
+}
+
 //gets the Unicode key and triggers directional changes
 function getKey(event) {
-    console.log(event.keyCode);
     if (canKey == true) {
         switch (event.keyCode) {
             case 65:
@@ -295,9 +320,4 @@ function update() {
             }
         }
     }
-}
-
-//when called, resets the board
-function reset() {
-    console.log("reset");
 }

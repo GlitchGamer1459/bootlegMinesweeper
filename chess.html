@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper</title>
-    <link rel="stylesheet" href="file.css" />
+    <link rel="stylesheet" href="file.css"/>
+    <link rel="stylesheet" href="file2.css"/>
 </head>
-<body class="bodyA">
+<body class="bodyA" onload="load()">
     <div class="navBar">
-        <a class="active" href="index.html">Home</a>
+        <a href="index.html">Home</a>
         <a href="minesweeper.html">Minesweeper</a>
         <a href="tictactoe.html">Tic-Tac-Toe</a>
         <a href="2048.html">2048</a>
         <a href="snake.html">Snake</a>
         <a href="phaser.html">Phaser</a>
-        <a href="chess.html">Chess</a>
+        <a class="active" href="chess.html">Chess</a>
     </div>
-    <p>This is the home page.</p>
-    <p>Wow, such empty!</p>
+
+    <div id="boardHolder">
+        
+    </div>
+
+    <script src="chess.js"></script>
 </body>
 </html>

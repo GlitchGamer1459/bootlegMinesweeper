@@ -10,9 +10,8 @@ var tText;
 
 var active = false;
 
-const whiteT = [
-    { type: "pawn", position: 49, id: 1 }
-];
+const whiteT = [0];
+whiteT.push(new Piece("pawn", 49, 1));
 
 //calls when page loads
 function load() {
@@ -55,23 +54,14 @@ function buildBoard() {
 
 //calls when clicked
 function onClick(cellID) {
-    if (!active) {
-        active = true;
-        console.log(cellID);
-        for (var i = 0; i < whiteT.length; i++) {
-            if (whiteT[i].position == cellID) {
-                
-            }
-        }
-    } else if (active) {
-        active = false;
-    }
+    whiteT.move(0);
     update();
 }
 
 //when called changes positions of board to match 
 function update() {
     for (var i = 0; i < whiteT.length; i++) {
+        console.log(whiteT[i].position);
         document.getElementById(whiteT[i].position).style.backgroundColor = "white";
         document.getElementById(whiteT[i].position).innerHTML = whiteT[i].type;
     }

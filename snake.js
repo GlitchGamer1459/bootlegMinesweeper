@@ -169,18 +169,34 @@ function startCycle() {
     interval = setInterval(cycle, 200);
 }
 
+//when called adds to score
+function score(internalLRUD) {
+    scoreCount = scoreCount + 1;
+    document.getElementById("score").innerHTML = "Score: " + scoreCount;
+    switch (internalLRUD) {
+        case 0:
+            tail.push({ x: snake.x + 1, y: snake.y });
+            break;
+        case 1:
+            tail.push({ x: snake.x - 1, y: snake.y });
+            break;
+        case 2:
+            tail.push({ x: snake.x, y: snake.y + 1 });
+            break;
+        case 3:
+            tail.push({ x: snake.x, y: snake.y - 1 });
+            break;
+    }
+    update();
+}
+
 //adjusts the tail array to follow the snake object
-//true = x, false = y   true = plus, false = minus
 function moveTail() {
     for (var i = 0; i < tail.length; i++) {
         coordGrid[tail[i].y][tail[i].x] = 0;
     }
-    for (var i = tail.length - 1; i >= 1; i--) {
-        tail[i].x = tail[i - 1].x;
-        tail[i].y = tail[i - 1].y;
-    }
-    tail[0].x = snake.x;
-    tail[0].y = snake.y;
+    tail.pop();
+    tail.unshift({ x: snake.x, y: snake.y });
     for (var i = 0; i < tail.length; i++) {
         coordGrid[tail[i].y][tail[i].x] = 3;
     }
@@ -201,7 +217,7 @@ function cycle() {
             } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
-                score();
+                score(LRUD);
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
             } else {
@@ -220,7 +236,7 @@ function cycle() {
             } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
-                score();
+                score(LRUD);
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
             } else {
@@ -239,7 +255,7 @@ function cycle() {
             } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
-                score();
+                score(LRUD);
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
             } else {
@@ -258,7 +274,7 @@ function cycle() {
             } else if (coordGrid[snake.y][snake.x] == 0) {
                 coordGrid[snake.y][snake.x] = 2;
             } else if (coordGrid[snake.y][snake.x] == 1) {
-                score();
+                score(LRUD);
                 coordGrid[snake.y][snake.x] = 2;
                 apple(true);
             } else {
@@ -271,31 +287,23 @@ function cycle() {
     canKey = true;
 }
 
-//when called adds to score
-function score() {
-    scoreCount = scoreCount + 1;
-    document.getElementById("score").innerHTML = "Score: " + scoreCount;
-    tail.push({ x: 0, y: 0 });
-    moveTail();
-}
-
 //moves the apple to a random location
 function apple(random, x1, y1) {
+    let running = true;
     if (random === false) {
         coordGrid[x1][y1] = 1;
     } else {
-        randomAppleRec();
-    }
-}
-
-//recursive function to randomize apple placement in environment
-function randomAppleRec() {
-    var x2 = Math.floor(Math.random() * boardSize);
-    var y2 = Math.floor(Math.random() * boardSize);
-    if (coordGrid[x2][y2] == 0) {
-        coordGrid[x2][y2] = 1;
-    } else {
-        randomAppleRec();
+        let x2 = Math.floor(Math.random() * boardSize);
+        let y2 = Math.floor(Math.random() * boardSize);
+        while (running) {
+            if (coordGrid[x2][y2] == 0) {
+                coordGrid[x2][y2] = 1;
+                running = false;
+            } else {
+                x2 = Math.floor(Math.random() * boardSize);
+                y2 = Math.floor(Math.random() * boardSize);
+            }
+        }
     }
 }
 

@@ -6,8 +6,9 @@
     <title>Minesweeper</title>
     <link rel="stylesheet" href="file.css"/>
     <link rel="stylesheet" href="file2.css"/>
+    <link rel="stylesheet" href="chess.css"/>
 </head>
-<body class="bodyA" onload="load()">
+<body class="bodyA">
     <div class="navBar">
         <a href="index.html">Home</a>
         <a href="minesweeper.html">Minesweeper</a>
@@ -18,11 +19,10 @@
         <a class="active" href="chess.html">Chess</a>
     </div>
 
-    <div id="boardHolder">
-        
+    <div>
+        <canvas id="canvasBoard" width="400" height="400">Canvas tag not supported</canvas>
     </div>
 
-    <script src="pieceConstructor.js"></script>
     <script src="chess.js"></script>
 </body>
 </html>

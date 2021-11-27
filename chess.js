@@ -1,68 +1,44 @@
-const BOARDSIZE = 8;
+var canvas = document.getElementById("canvasBoard");
+var ctx = canvas.getContext("2d");
 
-const grid = [];
+//odd rows
+ctx.fillRect(0, 0, 50, 50);
+ctx.fillRect(100, 0, 50, 50);
+ctx.fillRect(200, 0, 50, 50);
+ctx.fillRect(300, 0, 50, 50);
 
-var counter = 0;
-var table;
-var tRow;
-var tTile;
-var tText;
+ctx.fillRect(0, 100, 50, 50);
+ctx.fillRect(100, 100, 50, 50);
+ctx.fillRect(200, 100, 50, 50);
+ctx.fillRect(300, 100, 50, 50);
 
-var active = false;
+ctx.fillRect(0, 200, 50, 50);
+ctx.fillRect(100, 200, 50, 50);
+ctx.fillRect(200, 200, 50, 50);
+ctx.fillRect(300, 200, 50, 50);
 
-const whiteT = [0];
-whiteT.push(new Piece("pawn", 49, 1));
+ctx.fillRect(0, 300, 50, 50);
+ctx.fillRect(100, 300, 50, 50);
+ctx.fillRect(200, 300, 50, 50);
+ctx.fillRect(300, 300, 50, 50);
 
-//calls when page loads
-function load() {
-    buildBoard();
-    update();
-}
+//even rows
+ctx.fillRect(50, 50, 50, 50);
+ctx.fillRect(150, 50, 50, 50);
+ctx.fillRect(250, 50, 50, 50);
+ctx.fillRect(350, 50, 50, 50);
 
-//creates the container for the pieces
-function buildBoard() {
-    //creates the storage grid
-    for (var i = 0; i < BOARDSIZE; i++) {
-        grid.push([ 0, 0, 0, 0, 0, 0, 0, 0,]);
-    }
-    //creates visible board
-    table = document.createElement("table");
-    table.setAttribute("class", "Cboard");
-    table.setAttribute("id", "Ctable");
-    document.getElementById("boardHolder").appendChild(table);
+ctx.fillRect(50, 150, 50, 50);
+ctx.fillRect(150, 150, 50, 50);
+ctx.fillRect(250, 150, 50, 50);
+ctx.fillRect(350, 150, 50, 50);
 
-    for (var i = 1; i < (BOARDSIZE + 1); i++) {
-        tRow = document.createElement("tr");
-        tRow.setAttribute("id", "tr" + i);
-        document.getElementById("Ctable").appendChild(tRow);
-    }
+ctx.fillRect(50, 250, 50, 50);
+ctx.fillRect(150, 250, 50, 50);
+ctx.fillRect(250, 250, 50, 50);
+ctx.fillRect(350, 250, 50, 50);
 
-    for (var i = 1; i < (BOARDSIZE + 1); i++) {
-        for (var o = 0; o < BOARDSIZE; o++) {
-            counter++;
-            tTile = document.createElement("td");
-            tTile.setAttribute("id", counter);
-            tTile.addEventListener("click", function () {
-                onClick(this.id);
-            });
-            tText = document.createTextNode("");
-            tTile.appendChild(tText);
-            document.getElementById("tr" + i).appendChild(tTile);
-        }
-    }
-}
-
-//calls when clicked
-function onClick(cellID) {
-    whiteT.move(0);
-    update();
-}
-
-//when called changes positions of board to match 
-function update() {
-    for (var i = 0; i < whiteT.length; i++) {
-        console.log(whiteT[i].position);
-        document.getElementById(whiteT[i].position).style.backgroundColor = "white";
-        document.getElementById(whiteT[i].position).innerHTML = whiteT[i].type;
-    }
-}
+ctx.fillRect(50, 350, 50, 50);
+ctx.fillRect(150, 350, 50, 50);
+ctx.fillRect(250, 350, 50, 50);
+ctx.fillRect(350, 350, 50, 50);

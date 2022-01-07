@@ -1,44 +1,48 @@
-var canvas = document.getElementById("canvasBoard");
-var ctx = canvas.getContext("2d");
+const canvas = document.getElementById("canvasBoard");
+const ctx = canvas.getContext("2d");
 
-//odd rows
-ctx.fillRect(0, 0, 50, 50);
-ctx.fillRect(100, 0, 50, 50);
-ctx.fillRect(200, 0, 50, 50);
-ctx.fillRect(300, 0, 50, 50);
+//calls once on loading of the webpage
+function start() {
+    drawBoard();
 
-ctx.fillRect(0, 100, 50, 50);
-ctx.fillRect(100, 100, 50, 50);
-ctx.fillRect(200, 100, 50, 50);
-ctx.fillRect(300, 100, 50, 50);
+    const piece1 = new Piece(50, 50);
+    piece1.updateSprite();
+}
 
-ctx.fillRect(0, 200, 50, 50);
-ctx.fillRect(100, 200, 50, 50);
-ctx.fillRect(200, 200, 50, 50);
-ctx.fillRect(300, 200, 50, 50);
+//draws an equidistant set of cubes on the canvas
+function drawBoardLine(inpX, inpY) {
+    let posX = inpX;
+    let posY = inpY;
 
-ctx.fillRect(0, 300, 50, 50);
-ctx.fillRect(100, 300, 50, 50);
-ctx.fillRect(200, 300, 50, 50);
-ctx.fillRect(300, 300, 50, 50);
+    for (let i = 0; i < 16; i++) {
+        if (i < 4) {
+            ctx.fillRect(posX, posY, 50, 50);
+            posX += 100;
+        }
+    }
+}
 
-//even rows
-ctx.fillRect(50, 50, 50, 50);
-ctx.fillRect(150, 50, 50, 50);
-ctx.fillRect(250, 50, 50, 50);
-ctx.fillRect(350, 50, 50, 50);
+//draws the board on the canvas using drawBoardLine
+function drawBoard() {
+    let startX = 0;
+    let startY = 0;
 
-ctx.fillRect(50, 150, 50, 50);
-ctx.fillRect(150, 150, 50, 50);
-ctx.fillRect(250, 150, 50, 50);
-ctx.fillRect(350, 150, 50, 50);
+    for (let i = 0; i < 8; i++) {
+        drawBoardLine(startX, startY);
+        startY += 50;
 
-ctx.fillRect(50, 250, 50, 50);
-ctx.fillRect(150, 250, 50, 50);
-ctx.fillRect(250, 250, 50, 50);
-ctx.fillRect(350, 250, 50, 50);
+        if (startX == 0) {
+            startX = 50;
+        } else {
+            startX = 0;
+        }
+    }
+}
 
-ctx.fillRect(50, 350, 50, 50);
-ctx.fillRect(150, 350, 50, 50);
-ctx.fillRect(250, 350, 50, 50);
-ctx.fillRect(350, 350, 50, 50);
+//displays the mouse position relative to the canvas
+function displayMousePos(event) {
+    let pointerX = event.offsetX;
+    let pointerY = event.offsetY;
+
+    console.log("Coordinates: ( "+ pointerX + ", " + pointerY + " )");
+}

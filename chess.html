@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="file2.css"/>
     <link rel="stylesheet" href="chess.css"/>
 </head>
-<body class="bodyA">
+<body class="bodyA" onload="start()">
     <div class="navBar">
         <a href="index.html">Home</a>
         <a href="minesweeper.html">Minesweeper</a>
@@ -20,9 +20,10 @@
     </div>
 
     <div>
-        <canvas id="canvasBoard" width="400" height="400">Canvas tag not supported</canvas>
+        <canvas onclick="displayMousePos(event)" id="canvasBoard" width="400" height="400">Canvas tag not supported</canvas>
     </div>
 
+    <script src="chessPiece.js"></script>
     <script src="chess.js"></script>
 </body>
 </html>
